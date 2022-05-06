@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "toml-bench"
+version = "0.0.0"
+description = "Benchmarking for python toml libraries"
+authors = ["pwwang <pwwang@pwwang.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyparam = "^0.4.17"
+toml = "^0.10.2"
+rtoml = "^0.7.1"
+pytomlpp = "^1.0.11"
+tomli = "2.0.1"
+tomli-w = "^1.0.0"
+qtoml = "^0.3.1"
+tomlkit = "^0.10.2"
+python-dateutil = "^2.8.2"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+toml-bench = "toml_bench.__main__:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+target-version = ['py37', 'py38', 'py39']
+include = '\.pyi?$'
