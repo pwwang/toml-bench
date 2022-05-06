@@ -65,7 +65,6 @@ loading the toml file yields the same result as the JSON counterpart.
             except Exception as e:
                 return Exception(f"[{filename}]({url}) {e}")
         with tomlfile.with_suffix(".json").open("r") as f:
-            print(tomlfile)
             expect = load_json_data(f)
 
         try:

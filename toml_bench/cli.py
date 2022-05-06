@@ -24,7 +24,12 @@ def _init_params() -> Params:
     params.add_param(
         "comver",
         default="1.1.0",
-        desc="The version of the toml-test to use",
+        desc="The version of the toml-test to use in compliance tests",
+    )
+    params.add_param(
+        "iter",
+        default=5000,
+        desc="The number of iterations to run in speed tests",
     )
     return params
 

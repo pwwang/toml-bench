@@ -28,10 +28,11 @@ class TestWithPytomlppData(TestCase):
 
     def __init__(self) -> None:
         super().__init__()
-        self.number = 5
+        self.number = None
 
     def _prepare_datafile(self, filename: str, url: str) -> None:
         self.datafile = self.args.datadir / "speed" / filename
+        self.number = self.args.iter
         if not self.datafile.exists():
             self.datafile.parent.mkdir(parents=True, exist_ok=True)
             with urllib.request.urlopen(url) as resp, self.datafile.open(
@@ -48,7 +49,7 @@ class TestWithPytomlppData(TestCase):
         api = APIs[name]
 
         data = case.datafile.read_text()
-        return timeit.timeit(lambda: api.loads(data), number=self.number)
+        return timeit.timeit(lambda: api.loads(data), number=case.number)
 
     def result(self, out: Any) -> str:
         return f"{out:.2f}s ({self.number} iterations)"
