@@ -20,11 +20,26 @@ The verions of the packages tested in this report.
 |[qtoml](https://github.com/alethiophile/qtoml)|0.3.1|
 |[tomlkit](https://github.com/sdispater/tomlkit)|0.10.2|
 
+### TestDumpListWithNone
+
+How the package dumps a list with `None` value in it.
+    Literally `<package>.dumps({"key": [1, 2, 3, None, 5]})`
+
+
+|Package|Dumped value or error|
+|:------|:------|
+|[toml](https://github.com/uiri/toml)|Dumps to `'key = [ 1, 2, 3, "None", 5,]\n'`|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|Dumps to `'key = [1, 2, 3, "null", 5]\n'`|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|Raises not a valid type for conversion None|
+|[tomli](https://github.com/hukkin/tomli)|Raises Object of type <class 'NoneType'> is not TOML serializable|
+|[qtoml](https://github.com/alethiophile/qtoml)|Raises bad type '<class 'NoneType'>' for dump_value|
+|[tomlkit](https://github.com/sdispater/tomlkit)|Raises Invalid type <class 'NoneType'>|
+
 ### TestDumpNone
 
 How the package dumps `None` value in python,
     literally `<package>.dumps(None)`
-    
+
 
 |Package|Dumped value or error|
 |:------|:------|
@@ -39,12 +54,12 @@ How the package dumps `None` value in python,
 
 How the package dumps key-value pair with value `None`,
     literally `<package>.dumps({"key": None})`
-    
+
 
 |Package|Dumped value or error|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|Ignores the key (dumps to an empty string)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|Dumps to `key = "null" `|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|Dumps to `'key = "null"\n'`|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|Raises cannot convert value None to proper toml type |
 |[tomli](https://github.com/hukkin/tomli)|Raises Object of type <class 'NoneType'> is not TOML serializable|
 |[qtoml](https://github.com/alethiophile/qtoml)|Raises TOML cannot encode None|
@@ -55,7 +70,7 @@ How the package dumps key-value pair with value `None`,
 How the package loads `None`-like value in string,
     literally `<package>.loads('v1 = "null"
 v2 = "None"')`
-    
+
 
 |Package|Loaded as|
 |:------|:------|
@@ -72,7 +87,7 @@ Whether the package preserves the order of the keys while dumps
     a python dictionary. Thus, whether
     `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
     a string like `c = 1\na = 2\nb = 3\n`.
-    
+
 
 |Package|Keys order kept?|
 |:------|:------|
@@ -92,7 +107,7 @@ a = 2
 b = 3
 ')` yields a dictionary
     with keys in the order of `['c', 'a', 'b']`.
-    
+
 
 |Package|Keys order kept?|
 |:------|:------|
@@ -128,7 +143,7 @@ How the package loads a file with unicode.
     # Use `<api>.load()` to load the file
     with open(self.datafile, "r", encoding="utf-8") as f:
         loaded = self.api.load(f)
-    
+
 
 |Package|Loaded as|
 |:------|:------|
@@ -148,7 +163,7 @@ Test the compliance with the standard test suites for
 
 The tests come up with a JSON counterpart that can be used to valid whether
 loading the toml file yields the same result as the JSON counterpart.
-    
+
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
 |:------|:------|
@@ -169,7 +184,7 @@ Test the compliance with the standard test suites for
 - `Not OK`: The toml file is parsed without error, but expected to fail.
 - `OK`: All files are failed to parse, as expected. Showing the last parsing
     error.
-    
+
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
 |:------|:------|
