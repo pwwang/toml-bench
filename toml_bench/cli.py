@@ -27,6 +27,14 @@ def _init_params() -> Params:
         desc="The version of the toml-test to use in compliance tests",
     )
     params.add_param(
+        "k,keyword",
+        default="",
+        desc=(
+            "The keyword to limit the tests with name or package name "
+            "including the keyword (case-insensitive)"
+        )
+    )
+    params.add_param(
         "iter",
         default=5000,
         desc="The number of iterations to run in speed tests",

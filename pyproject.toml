@@ -16,6 +16,9 @@ tomli-w = "^1.0.0"
 qtoml = "^0.3.1"
 tomlkit = "^0.10.2"
 python-dateutil = "^2.8.2"
+importlib-metadata = "^4.11.3"
+# required by tomlkit, but cannot be inferred by poetry
+regex = "*"
 
 [tool.poetry.dev-dependencies]
 

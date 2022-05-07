@@ -1,20 +1,13 @@
-from email import header
 from typing import Any
-from ..case import TestCase
-from ..api import APIs
+from ..case import TestCase, TestCaseDummy
 
 
-class TestDumpNone(TestCase):
-    """How the package dumps `None` value in python,
-    literally `<package>.dumps(None)`
-    """
-    header = "Dumped value or error"
+class TestDumpNoneDummy(TestCaseDummy):
 
-    def run(self, casename: str, name: str) -> Any:
-        super().run(casename, name)
-        api = APIs[name]
+    def run(self, case: TestCase) -> Any:
+        super().run(case)
         try:
-            return api.dumps(None)
+            return self.api.dumps(None)
         except Exception as e:
             return e
 
@@ -25,17 +18,20 @@ class TestDumpNone(TestCase):
         return f"Dumps to `{out}`"
 
 
-class TestDumpValueNone(TestCase):
-    """How the package dumps key-value pair with value `None`,
-    literally `<package>.dumps({"key": None})`
+class TestDumpNone(TestCase):
+    """How the package dumps `None` value in python,
+    literally `<package>.dumps(None)`
     """
-    header = "Dumped value or error"
+    HEADER = "Dumped value or error"
+    DUMMY_CLASS = TestDumpNoneDummy
 
-    def run(self, casename: str, name: str) -> Any:
-        super().run(casename, name)
-        api = APIs[name]
+
+class TestDumpValueNoneDummy(TestCaseDummy):
+
+    def run(self, case: TestCase) -> Any:
+        super().run(case)
         try:
-            return api.dumps({"key": None})
+            return self.api.dumps({"key": None})
         except Exception as e:
             return e
 
@@ -48,16 +44,30 @@ class TestDumpValueNone(TestCase):
         return f"Dumps to `{replace_newline(out)}`"
 
 
+class TestDumpValueNone(TestCase):
+    """How the package dumps key-value pair with value `None`,
+    literally `<package>.dumps({"key": None})`
+    """
+    HEADER = "Dumped value or error"
+    DUMMY_CLASS = TestDumpValueNoneDummy
+
+
+class TestLoadNoneLikeDummy(TestCaseDummy):
+
+    def run(self, case: TestCase) -> Any:
+        super().run(case)
+        try:
+            return self.api.loads('v1 = "null"\nv2 = "None"')
+        except Exception as e:
+            return e
+
+    def result(self, out: Any) -> str:
+        return f"`{out}`"
+
+
 class TestLoadNoneLike(TestCase):
     """How the package loads `None`-like value in string,
     literally `<package>.loads('v1 = "null"\nv2 = "None"')`
     """
-    header = "Loaded as"
-
-    def run(self, casename: str, name: str) -> Any:
-        super().run(casename, name)
-        api = APIs[name]
-        try:
-            return api.loads('v1 = "null"\nv2 = "None"')
-        except Exception as e:
-            return e
+    HEADER = "Loaded as"
+    DUMMY_CLASS = TestLoadNoneLikeDummy

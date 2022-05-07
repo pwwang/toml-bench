@@ -38,12 +38,12 @@ def load_subpkgs(dire: PathLike) -> Mapping[str, ModuleType]:
     return out
 
 
-def get_instance(
+def get_object(
     module: ModuleType,
     checker: Callable[[Any], bool],
     multi: bool = False,
 ) -> Any:
-    """Get instance of a class"""
+    """Get object from a module with a checker"""
     out = [] if multi else None
     for attr in dir(module):
         if attr.startswith("_"):
