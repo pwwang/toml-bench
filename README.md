@@ -2,7 +2,7 @@
 
 Which toml package to use in python?
 
-See also: [PEP 680](https://www.python.org/dev/peps/pep-0680/)
+See also: [toml-lang](https://toml.io/en/) and [PEP 680](https://www.python.org/dev/peps/pep-0680/)
 
 
 ## Report
@@ -122,11 +122,11 @@ How the package dumps Unicode in python,
 How the package loads a file with unicode.
 
     # Create a file with unicode content
-    with open(self.datafile, "w", encoding="GBK") as f:
+    with open(self.datafile, "w", encoding="utf-8") as f:
         f.write('"你好" = "世界"\n')
 
     # Use `<api>.load()` to load the file
-    with open(self.datafile, "r", encoding="GBK") as f:
+    with open(self.datafile, "r", encoding="utf-8") as f:
         loaded = self.api.load(f)
     
 
@@ -135,7 +135,7 @@ How the package loads a file with unicode.
 |[toml](https://github.com/uiri/toml)|`{'你好': '世界'}`|
 |[rtoml](https://github.com/samuelcolvin/rtoml)|`{'你好': '世界'}`|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|`{'你好': '世界'}`|
-|[tomli](https://github.com/hukkin/tomli)|```TypeError: File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')` ```<br />**When load with:**<br />`with open(datafile, 'rb') as f:`<br />`　   loaded = self.api.load(f)`<br />**Raises:**<br />`UnicodeDecodeError('utf-8', b'"\xc4\xe3\xba\xc3" = "\xca\xc0\xbd\xe7"\n', 1, 2, 'invalid continuation byte')`|
+|[tomli](https://github.com/hukkin/tomli)|```TypeError: File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')` ```<br />**When load with:**<br />`with open(datafile, 'rb') as f:`<br />`　   loaded = self.api.load(f)`<br />**Yields:**<br />`{'你好': '世界'}`|
 |[qtoml](https://github.com/alethiophile/qtoml)|`{'你好': '世界'}`|
 |[tomlkit](https://github.com/sdispater/tomlkit)|`{'你好': '世界'}`|
 
@@ -144,10 +144,10 @@ How the package loads a file with unicode.
 Test the compliance with the standard test suites for
         valid toml files here:
 
-        https://github.com/BurntSushi/toml-test/
+    https://github.com/BurntSushi/toml-test/
 
-    The tests come up with a JSON counterpart that can be used to valid whether
-    loading the toml file yields the same result as the JSON counterpart.
+The tests come up with a JSON counterpart that can be used to valid whether
+loading the toml file yields the same result as the JSON counterpart.
     
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
@@ -164,11 +164,11 @@ Test the compliance with the standard test suites for
 Test the compliance with the standard test suites for
         invalid toml files here:
 
-        https://github.com/BurntSushi/toml-test/
+    https://github.com/BurntSushi/toml-test/
 
-    - `Not OK`: The toml file is parsed without error, but expected to fail.
-    - `OK`: All files are failed to parse, as expected. Showing the last parsing
-        error.
+- `Not OK`: The toml file is parsed without error, but expected to fail.
+- `OK`: All files are failed to parse, as expected. Showing the last parsing
+    error.
     
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
@@ -189,12 +189,12 @@ Test the speed of loading data provided by pytomlpp.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|6.35s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.74s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.90s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|3.16s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|9.87s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|53.79s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|6.25s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.72s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.87s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|3.10s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|9.69s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|53.57s (5000 iterations)|
 
 ### TestSpeedWithRtomlData
 
@@ -204,12 +204,12 @@ Test the speed of loading data provided by rtoml.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|16.50s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.98s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.93s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|7.24s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|18.69s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|130.10s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|16.20s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|1.33s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.23s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|6.65s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|18.71s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|140.71s (5000 iterations)|
 
 ### TestSpeedWithTomliData
 
@@ -219,12 +219,12 @@ Test the speed of loading data provided by tomli.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|10.41s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.95s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.26s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|5.06s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|13.74s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|97.34s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|12.57s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|1.01s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.11s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|4.35s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|13.82s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|81.82s (5000 iterations)|
 
 
 ## Run your own report

@@ -93,10 +93,10 @@ class TestComplianceValid(TestCase):
     """Test the compliance with the standard test suites for
         valid toml files here:
 
-        %(url)s
+    %(url)s
 
-    The tests come up with a JSON counterpart that can be used to valid whether
-    loading the toml file yields the same result as the JSON counterpart.
+The tests come up with a JSON counterpart that can be used to valid whether
+loading the toml file yields the same result as the JSON counterpart.
     """
 
     ORDER = 1
@@ -167,11 +167,11 @@ class TestComplianceInvalid(TestComplianceValid):
     """Test the compliance with the standard test suites for
         invalid toml files here:
 
-        %(url)s
+    %(url)s
 
-    - `Not OK`: The toml file is parsed without error, but expected to fail.
-    - `OK`: All files are failed to parse, as expected. Showing the last parsing
-        error.
+- `Not OK`: The toml file is parsed without error, but expected to fail.
+- `OK`: All files are failed to parse, as expected. Showing the last parsing
+    error.
     """
 
     ORDER = 2

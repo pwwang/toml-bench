@@ -34,7 +34,7 @@ class TOMLiTestLoadUnicodeDummy(TestLoadUnicodeDummy):
                 "**When load with:**<br />"
                 "`with open(datafile, 'rb') as f:`<br />"
                 "`　   loaded = self.api.load(f)`<br />"
-                "**Raises:**<br />"
+                "**Yields:**<br />"
                 f"`{loaded!r}`"
             )
         return super().result(out)

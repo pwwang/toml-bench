@@ -28,7 +28,7 @@ class TestLoadUnicodeDummy(TestCaseDummy):
     def run(self, case: TestCase) -> Any:
         super().run(case)
         try:
-            with open(case.datafile, "r", encoding="GBK") as f:
+            with open(case.datafile, "r", encoding="utf-8") as f:
                 return self.api.load(f)
         except Exception as e:
             return e
@@ -42,11 +42,11 @@ class TestLoadUnicode(TestCase):
     """How the package loads a file with unicode.
 
     # Create a file with unicode content
-    with open(self.datafile, "w", encoding="GBK") as f:
+    with open(self.datafile, "w", encoding="utf-8") as f:
         f.write('"你好" = "世界"\\n')
 
     # Use `<api>.load()` to load the file
-    with open(self.datafile, "r", encoding="GBK") as f:
+    with open(self.datafile, "r", encoding="utf-8") as f:
         loaded = self.api.load(f)
     """
 
@@ -61,5 +61,5 @@ class TestLoadUnicode(TestCase):
         super().prepare()
         self.datafile = self.args.datadir / "unicode" / "unicode.toml"
         self.datafile.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.datafile, "w", encoding="GBK") as f:
+        with open(self.datafile, "w", encoding="utf-8") as f:
             f.write('"你好" = "世界"\n')
