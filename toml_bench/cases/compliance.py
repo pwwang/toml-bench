@@ -28,6 +28,9 @@ class TestComplianceValid(TestCase):
 The tests come up with a JSON counterpart that can be used to valid whether
 loading the toml file yields the same result as the JSON counterpart.
     """
+    def __init__(self) -> None:
+        super().__init__()
+        self.total = 0
 
     def _prepare_data(self) -> None:
         ver = self.args.comver
@@ -50,6 +53,7 @@ loading the toml file yields the same result as the JSON counterpart.
         self._prepare_data()
 
     def _runfile(self, name: str, tomlfile: Path, subdir: bool = False) -> Any:
+        self.total += 1
         api = APIs[name]
         filename = (
             tomlfile.name
@@ -78,6 +82,7 @@ loading the toml file yields the same result as the JSON counterpart.
         super().run(case, name)
 
         errors = []
+        case.total = 0
         for tomlfile in case.datadir.joinpath("tests", "valid").glob("*.toml"):
             out = case._runfile(name, tomlfile)
             if out is not None:
@@ -93,7 +98,13 @@ loading the toml file yields the same result as the JSON counterpart.
 
     def result(self, out: Any) -> str:
         if not out:
-            return "OK"
+            return f"OK, *{self.total}/{self.total} (100%) passed*"
+
+        passed = self.total - len(out)
+        out.append(
+            f"*{passed}/{self.total} "
+            f"({100.0 * passed / self.total:.2f}%) passed*"
+        )
 
         return "<br />".join(str(e) for e in out)
 
@@ -112,6 +123,7 @@ class TestComplianceInvalid(TestComplianceValid):
     header = "Result"
 
     def _runfile(self, name: str, tomlfile: Path, subdir: bool = False) -> Any:
+        self.total += 1
         api = APIs[name]
         filename = (
             tomlfile.name
@@ -132,6 +144,7 @@ class TestComplianceInvalid(TestComplianceValid):
     def run(self, case: "TestCase", name: str) -> Any:
         super().run(case, name)
         errors = []
+        case.total = 0
         for tomlfile in case.datadir.joinpath("tests", "invalid").glob(
             "*.toml"
         ):
@@ -149,8 +162,15 @@ class TestComplianceInvalid(TestComplianceValid):
 
     def result(self, out: Any) -> str:
         replace_newline = lambda s: s.replace("\n", " ")
-        if all(isinstance(e, Exception) for e in out):
-            return f"OK: {replace_newline(str(out[-1]))}"
+        passed = [isinstance(e, Exception) for e in out]
+        if all(passed):
+            return (
+                f"OK, *{replace_newline(str(out[-1]))} (100%) passed*"
+            )
+        out.append(
+            f"*{sum(passed)}/{self.total} "
+            f"({100.0 * sum(passed) / self.total:.2f}%) passed*"
+        )
         return "<br />".join(
             replace_newline(e) for e in out if isinstance(e, str)
         )
