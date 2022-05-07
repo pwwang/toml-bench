@@ -3,7 +3,6 @@ from ..case import TestCase, TestCaseDummy
 
 
 class TestDumpKeysOrderDummy(TestCaseDummy):
-
     def run(self, case: TestCase) -> Any:
         super().run(case)
 
@@ -21,18 +20,19 @@ class TestDumpKeysOrderDummy(TestCaseDummy):
             return "Kept"
         return "Lost"
 
+
 class TestDumpKeysOrder(TestCase):
     """Whether the package preserves the order of the keys while dumps
     a python dictionary. Thus, whether
     `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
     a string like `c = 1\\na = 2\\nb = 3\\n`.
     """
+
     HEADER = "Keys order kept?"
     DUMMY_CLASS = TestDumpKeysOrderDummy
 
 
 class TestLoadKeysOrderDummy(TestCaseDummy):
-
     def run(self, case: TestCase) -> Any:
         super().run(case)
 
@@ -58,5 +58,6 @@ class TestLoadKeysOrder(TestCase):
     `<package>.loads('c = 1\na = 2\nb = 3\n')` yields a dictionary
     with keys in the order of `['c', 'a', 'b']`.
     """
+
     HEADER = "Keys order kept?"
     DUMMY_CLASS = TestLoadKeysOrderDummy

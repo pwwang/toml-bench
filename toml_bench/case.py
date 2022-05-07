@@ -9,7 +9,6 @@ if TYPE_CHECKING:
 
 
 class TestCaseDummy(ABC):
-
     def __init__(self) -> None:
         self.args = None
         self.pkgname = None

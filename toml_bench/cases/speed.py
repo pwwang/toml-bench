@@ -18,7 +18,6 @@ RTOML_DATA_URL = (
 
 
 class TestSpeedDummy(TestCaseDummy):
-
     def run(self, case: TestCase) -> Any:
         super().run(case)
 

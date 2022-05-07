@@ -1,6 +1,9 @@
 import rtoml
 from ..api import API
-from ..cases.compliance import TestComplianceValidDummy, TestComplianceInValidDummy
+from ..cases.compliance import (
+    TestComplianceValidDummy,
+    TestComplianceInValidDummy,
+)
 
 
 class TOMLKitAPI(API):

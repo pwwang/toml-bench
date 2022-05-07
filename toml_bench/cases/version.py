@@ -4,7 +4,6 @@ from ..api import APIs
 
 
 class VersionDummy(TestCaseDummy):
-
     def run(self, case: "TestCase") -> Any:
         super().run(case)
         return self.api.version()

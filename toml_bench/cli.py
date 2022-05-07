@@ -32,7 +32,7 @@ def _init_params() -> Params:
         desc=(
             "The keyword to limit the tests with name or package name "
             "including the keyword (case-insensitive)"
-        )
+        ),
     )
     params.add_param(
         "iter",

@@ -2,7 +2,8 @@ import toml
 
 from ..api import API
 from ..cases.compliance import (
-    TestComplianceValidDummy, TestComplianceInValidDummy
+    TestComplianceValidDummy,
+    TestComplianceInValidDummy,
 )
 
 

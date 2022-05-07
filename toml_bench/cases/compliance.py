@@ -1,4 +1,3 @@
-
 import zipfile
 import urllib.request
 from pathlib import Path
@@ -51,9 +50,9 @@ class TestComplianceDummy(TestCaseDummy):
             expect = load_json_data(f)
 
         try:
-            assert data == expect, (
-                f"[{filename}]({url}) Parsed as unexpected data."
-            )
+            assert (
+                data == expect
+            ), f"[{filename}]({url}) Parsed as unexpected data."
         except AssertionError as e:
             return e
 
@@ -66,9 +65,7 @@ class TestComplianceDummy(TestCaseDummy):
             if out is not None:
                 errors.append(out)
 
-        for tomlfile in case.datadir.joinpath("tests", kind).glob(
-            "*/*.toml"
-        ):
+        for tomlfile in case.datadir.joinpath("tests", kind).glob("*/*.toml"):
             out = self._runfile(tomlfile, subdir=True)
             if out is not None:
                 errors.append(out)
@@ -94,13 +91,14 @@ class TestComplianceValidDummy(TestComplianceDummy):
 @doc_formatter(url=TOML_TEST_REPO)
 class TestComplianceValid(TestCase):
     """Test the compliance with the standard test suites for
-    valid toml files here:
+        valid toml files here:
 
-    %(url)s
+        %(url)s
 
-The tests come up with a JSON counterpart that can be used to valid whether
-loading the toml file yields the same result as the JSON counterpart.
+    The tests come up with a JSON counterpart that can be used to valid whether
+    loading the toml file yields the same result as the JSON counterpart.
     """
+
     ORDER = 1
     DUMMY_CLASS = TestComplianceValidDummy
 
@@ -167,13 +165,14 @@ class TestComplianceInValidDummy(TestComplianceDummy):
 @doc_formatter(url=TOML_TEST_REPO)
 class TestComplianceInvalid(TestComplianceValid):
     """Test the compliance with the standard test suites for
-    invalid toml files here:
+        invalid toml files here:
 
-    %(url)s
+        %(url)s
 
-- `Not OK`: The toml file is parsed without error, but expected to fail.
-- `OK`: All files are failed to parse, as expected. Showing the last parsing
-    error.
+    - `Not OK`: The toml file is parsed without error, but expected to fail.
+    - `OK`: All files are failed to parse, as expected. Showing the last parsing
+        error.
     """
+
     ORDER = 2
     DUMMY_CLASS = TestComplianceInValidDummy
