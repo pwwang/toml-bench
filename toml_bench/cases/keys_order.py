@@ -3,11 +3,11 @@ from ..case import TestCase
 from ..api import APIs
 
 
-class TestLoadKeysOrder(TestCase):
+class TestDumpKeysOrder(TestCase):
     """Whether the package preserves the order of the keys while dumps
     a python dictionary. Thus, whether
     `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
-    a string like `c = 1\na = 2\nb = 3\n`.
+    a string like `c = 1\\na = 2\\nb = 3\\n`.
     """
     header = "Keys order kept?"
 
@@ -30,7 +30,7 @@ class TestLoadKeysOrder(TestCase):
         return "Lost"
 
 
-class TestDumpKeysOrder(TestCase):
+class TestLoadKeysOrder(TestCase):
     """Whether the package preserves the order of the keys while loads
     a TOML string. Thus, whether
     `<package>.loads('c = 1\na = 2\nb = 3\n')` yields a dictionary

@@ -68,13 +68,10 @@ v2 = "None"')`
 
 ### TestDumpKeysOrder
 
-Whether the package preserves the order of the keys while loads
-    a TOML string. Thus, whether
-    `<package>.loads('c = 1
-a = 2
-b = 3
-')` yields a dictionary
-    with keys in the order of `['c', 'a', 'b']`.
+Whether the package preserves the order of the keys while dumps
+    a python dictionary. Thus, whether
+    `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
+    a string like `c = 1\na = 2\nb = 3\n`.
     
 
 |Package|Keys order kept?|
@@ -88,13 +85,13 @@ b = 3
 
 ### TestLoadKeysOrder
 
-Whether the package preserves the order of the keys while dumps
-    a python dictionary. Thus, whether
-    `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
-    a string like `c = 1
+Whether the package preserves the order of the keys while loads
+    a TOML string. Thus, whether
+    `<package>.loads('c = 1
 a = 2
 b = 3
-`.
+')` yields a dictionary
+    with keys in the order of `['c', 'a', 'b']`.
     
 
 |Package|Keys order kept?|
@@ -156,12 +153,12 @@ Test the speed of loading data provided by pytomlpp.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|6.57s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.75s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.90s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|3.46s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|11.91s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|50.95s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|7.53s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.78s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.96s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|3.80s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|10.56s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|49.05s (5000 iterations)|
 
 ### TestWithRtomlData
 
@@ -171,12 +168,12 @@ Test the speed of loading data provided by rtoml.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|16.26s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.31s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.24s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|15.15s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|1.23s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.22s (5000 iterations)|
 |[tomli](https://github.com/hukkin/tomli)|6.35s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|18.92s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|103.44s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|18.74s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|100.55s (5000 iterations)|
 
 ### TestWithTomliData
 
@@ -186,12 +183,12 @@ Test the speed of loading data provided by tomli.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|10.00s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.96s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.26s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|4.40s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|13.38s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|69.73s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|11.86s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|1.01s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.21s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|4.43s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|13.34s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|70.13s (5000 iterations)|
 
 
 ## Run your own report
