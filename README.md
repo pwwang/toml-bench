@@ -16,7 +16,7 @@ The verions of the packages tested in this report.
 |[toml](https://github.com/uiri/toml)|0.10.2|
 |[rtoml](https://github.com/samuelcolvin/rtoml)|0.7.1|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.0.11|
-|[tomli](https://github.com/hukkin/tomli)|2.0.1, tomli_w: 1.0.0|
+|[tomli](https://github.com/hukkin/tomli)|2.0.1; **tomli_w**: 1.0.0|
 |[qtoml](https://github.com/alethiophile/qtoml)|0.3.1|
 |[tomlkit](https://github.com/sdispater/tomlkit)|0.10.2|
 
@@ -29,7 +29,7 @@ How the package dumps `None` value in python,
 |Package|Dumped value or error|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|Raises 'NoneType' object is not iterable|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|Dumps to `"null"`|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|Dumps to `'"null"'`|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|Raises dumps(): incompatible function arguments. The following argument types are supported:     1. (arg0: dict) -> str  Invoked with: None|
 |[tomli](https://github.com/hukkin/tomli)|Raises 'NoneType' object has no attribute 'items'|
 |[qtoml](https://github.com/alethiophile/qtoml)|Raises 'NoneType' object has no attribute 'items'|
@@ -103,15 +103,51 @@ b = 3
 |[qtoml](https://github.com/alethiophile/qtoml)|Kept|
 |[tomlkit](https://github.com/sdispater/tomlkit)|Kept|
 
+### TestDumpsUnicode
+
+How the package dumps Unicode in python,
+    literally, `<api>.dumps({"你好": "世界"})`
+
+|Package|Dumped value|
+|:------|:------|
+|[toml](https://github.com/uiri/toml)|`"你好" = "世界" `|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|`"你好" = "世界" `|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|`'你好' = '世界'`|
+|[tomli](https://github.com/hukkin/tomli)|`"你好" = "世界" `|
+|[qtoml](https://github.com/alethiophile/qtoml)|`'你好' = '世界' `|
+|[tomlkit](https://github.com/sdispater/tomlkit)|`"你好" = "世界" `|
+
+### TestLoadUnicode
+
+How the package loads a file with unicode.
+
+    # Create a file with unicode content
+    with open(self.datafile, "w", encoding="GBK") as f:
+        f.write('"你好" = "世界"\n')
+
+    # Use `<api>.load()` to load the file
+    with open(self.datafile, "r", encoding="GBK") as f:
+        loaded = self.api.load(f)
+    
+
+|Package|Loaded as|
+|:------|:------|
+|[toml](https://github.com/uiri/toml)|`{'你好': '世界'}`|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|`{'你好': '世界'}`|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|`{'你好': '世界'}`|
+|[tomli](https://github.com/hukkin/tomli)|```TypeError: File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')` ```<br />**When load with:**<br />`with open(datafile, 'rb') as f:`<br />`　   loaded = self.api.load(f)`<br />**Raises:**<br />`UnicodeDecodeError('utf-8', b'"\xc4\xe3\xba\xc3" = "\xca\xc0\xbd\xe7"\n', 1, 2, 'invalid continuation byte')`|
+|[qtoml](https://github.com/alethiophile/qtoml)|`{'你好': '世界'}`|
+|[tomlkit](https://github.com/sdispater/tomlkit)|`{'你好': '世界'}`|
+
 ### TestComplianceValid
 
 Test the compliance with the standard test suites for
-    valid toml files here:
+        valid toml files here:
 
-    https://github.com/BurntSushi/toml-test/
+        https://github.com/BurntSushi/toml-test/
 
-The tests come up with a JSON counterpart that can be used to valid whether
-loading the toml file yields the same result as the JSON counterpart.
+    The tests come up with a JSON counterpart that can be used to valid whether
+    loading the toml file yields the same result as the JSON counterpart.
     
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
@@ -126,13 +162,13 @@ loading the toml file yields the same result as the JSON counterpart.
 ### TestComplianceInvalid
 
 Test the compliance with the standard test suites for
-    invalid toml files here:
+        invalid toml files here:
 
-    https://github.com/BurntSushi/toml-test/
+        https://github.com/BurntSushi/toml-test/
 
-- `Not OK`: The toml file is parsed without error, but expected to fail.
-- `OK`: All files are failed to parse, as expected. Showing the last parsing
-    error.
+    - `Not OK`: The toml file is parsed without error, but expected to fail.
+    - `OK`: All files are failed to parse, as expected. Showing the last parsing
+        error.
     
 
 |Package|Result (BurntSushi/toml-test v1.1.0)|
@@ -153,12 +189,12 @@ Test the speed of loading data provided by pytomlpp.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|6.47s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.71s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.90s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|3.92s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|11.10s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|55.96s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|0.01s (5 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.00s (5 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.00s (5 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|0.00s (5 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|0.02s (5 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|0.05s (5 iterations)|
 
 ### TestSpeedWithRtomlData
 
@@ -168,12 +204,12 @@ Test the speed of loading data provided by rtoml.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|14.66s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.21s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.21s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|6.32s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|18.47s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|142.90s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|0.02s (5 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.01s (5 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.00s (5 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|0.01s (5 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|0.03s (5 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|0.14s (5 iterations)|
 
 ### TestSpeedWithTomliData
 
@@ -183,12 +219,12 @@ Test the speed of loading data provided by tomli.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|10.06s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.95s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.33s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|4.50s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|14.19s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|87.57s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|0.01s (5 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.00s (5 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.00s (5 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|0.01s (5 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|0.02s (5 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|0.08s (5 iterations)|
 
 
 ## Run your own report

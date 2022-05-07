@@ -14,7 +14,7 @@ class TestDumpNoneDummy(TestCaseDummy):
         replace_newline = lambda s: s.replace("\n", " ")
         if isinstance(out, Exception):
             return f"Raises {replace_newline(str(out))}"
-        return f"Dumps to `{out}`"
+        return f"Dumps to `{out!r}`"
 
 
 class TestDumpNone(TestCase):
@@ -61,7 +61,7 @@ class TestLoadNoneLikeDummy(TestCaseDummy):
             return e
 
     def result(self, out: Any) -> str:
-        return f"`{out}`"
+        return f"`{out!r}`"
 
 
 class TestLoadNoneLike(TestCase):
