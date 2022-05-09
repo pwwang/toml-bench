@@ -148,18 +148,23 @@ class TestComplianceInValidDummy(TestComplianceDummy):
     def result(self, out: Any) -> str:
         replace_newline = lambda s: s.replace("\n", " ")
         passed = [isinstance(e, Exception) for e in out]
+        failed = [e for e in out if not isinstance(e, Exception)]
         if all(passed):
             return (
                 f"OK: {replace_newline(str(out[-1]))}<br /> "
                 f"*{len(passed)}/{len(passed)} (100%) passed*"
             )
-        out.append(
+
+        if len(failed) > 10:
+            failed = failed[:10] + [
+                f"Not OK: *{len(failed) - 10} more items incorrectly parsed.*"
+            ]
+
+        failed.append(
             f"*{sum(passed)}/{self.total} "
             f"({100.0 * sum(passed) / self.total:.2f}%) passed*"
         )
-        return "<br />".join(
-            replace_newline(e) for e in out if isinstance(e, str)
-        )
+        return "<br />".join(replace_newline(str(e)) for e in failed)
 
 
 @doc_formatter(url=TOML_TEST_REPO)
