@@ -241,6 +241,10 @@ Test the speed of loading data provided by tomli.
 |[qtoml](https://github.com/alethiophile/qtoml)|13.82s (5000 iterations)|
 |[tomlkit](https://github.com/sdispater/tomlkit)|81.82s (5000 iterations)|
 
+## Other reports
+
+- [Report with `toml-test` v1.0.0](./Report-toml_test_v1.0.0.md)
+
 
 ## Run your own report
 
