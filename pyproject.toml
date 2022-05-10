@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pyparam = "^0.4.17"
+pyparam = "^0.5"
 toml = "^0.10.2"
 rtoml = "^0.7.1"
 pytomlpp = "^1.0.11"
@@ -16,7 +16,7 @@ tomli-w = "^1.0.0"
 qtoml = "^0.3.1"
 tomlkit = "^0.10.2"
 python-dateutil = "^2.8.2"
-importlib-metadata = "^4.11.3"
+importlib-metadata = "^4"
 # required by tomlkit, but cannot be inferred by poetry
 regex = "*"
 
