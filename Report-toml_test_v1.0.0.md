@@ -7,7 +7,7 @@ The verions of the packages tested in this report.
 |Package|Version|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|0.10.2|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.7.1|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.8.0|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.0.11|
 |[tomli](https://github.com/hukkin/tomli)|2.0.1; **tomli_w**: 1.0.0|
 |[qtoml](https://github.com/alethiophile/qtoml)|0.3.1|
@@ -17,7 +17,7 @@ The verions of the packages tested in this report.
 
 How the package dumps a list with `None` value in it.
     Literally `<package>.dumps({"key": [1, 2, 3, None, 5]})`
-
+    
 
 |Package|Dumped value or error|
 |:------|:------|
@@ -32,7 +32,7 @@ How the package dumps a list with `None` value in it.
 
 How the package dumps `None` value in python,
     literally `<package>.dumps(None)`
-
+    
 
 |Package|Dumped value or error|
 |:------|:------|
@@ -47,7 +47,7 @@ How the package dumps `None` value in python,
 
 How the package dumps key-value pair with value `None`,
     literally `<package>.dumps({"key": None})`
-
+    
 
 |Package|Dumped value or error|
 |:------|:------|
@@ -63,7 +63,7 @@ How the package dumps key-value pair with value `None`,
 How the package loads `None`-like value in string,
     literally `<package>.loads('v1 = "null"
 v2 = "None"')`
-
+    
 
 |Package|Loaded as|
 |:------|:------|
@@ -80,7 +80,7 @@ Whether the package preserves the order of the keys while dumps
     a python dictionary. Thus, whether
     `<package>.dumps({"c": 1, "a": 2, "b": 3})` yields
     a string like `c = 1\na = 2\nb = 3\n`.
-
+    
 
 |Package|Keys order kept?|
 |:------|:------|
@@ -100,7 +100,7 @@ a = 2
 b = 3
 ')` yields a dictionary
     with keys in the order of `['c', 'a', 'b']`.
-
+    
 
 |Package|Keys order kept?|
 |:------|:------|
@@ -136,7 +136,7 @@ How the package loads a file with unicode.
     # Use `<api>.load()` to load the file
     with open(self.datafile, "r", encoding="utf-8") as f:
         loaded = self.api.load(f)
-
+    
 
 |Package|Loaded as|
 |:------|:------|
@@ -156,12 +156,12 @@ Test the compliance with the standard test suites for
 
 The tests come up with a JSON counterpart that can be used to valid whether
 loading the toml file yields the same result as the JSON counterpart.
-
+    
 
 |Package|Result (BurntSushi/toml-test v1.0.0)|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|[comment/tricky.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/comment/tricky.toml) Parsed as unexpected data.<br />[array/mixed-int-array.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/array/mixed-int-array.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/mixed-int-float.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/array/mixed-int-float.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/mixed-string-table.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/array/mixed-string-table.toml) list index out of range<br />[array/mixed-int-string.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/array/mixed-int-string.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/nested-double.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/array/nested-double.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[float/zero.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/float/zero.toml) Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 29)<br />[key/escapes.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/key/escapes.toml) Parsed as unexpected data.<br />[key/dotted.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/key/dotted.toml) Found invalid character in key name: '"'. Try quoting the key name. (line 12 column 11 char 245)<br />[inline-table/key-dotted.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/inline-table/key-dotted.toml) Parsed as unexpected data.<br />[inline-table/multiline.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/inline-table/multiline.toml) Invalid inline table value encountered (line 1 column 1 char 0)<br />[datetime/local-time.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/datetime/local-time.toml) Parsed as unexpected data.<br />[datetime/datetime.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/datetime/datetime.toml) Parsed as unexpected data.<br />*83/96 (86.46%) passed*|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|[key/empty.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/key/empty.toml) empty table key found at line 1 column 1<br />*95/96 (98.96%) passed*|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|OK, *96/96 (100%) passed*|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|OK, *96/96 (100%) passed*|
 |[tomli](https://github.com/hukkin/tomli)|OK, *96/96 (100%) passed*|
 |[qtoml](https://github.com/alethiophile/qtoml)|[comment/tricky.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/comment/tricky.toml) can't parse type (line 11, column 7)<br />[string/multiline-quotes.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/string/multiline-quotes.toml) Didn't find expected newline (line 4, column 26)<br />[datetime/milliseconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/datetime/milliseconds.toml) Didn't find expected newline (line 2, column 27)<br />[datetime/datetime.toml](https://github.com/BurntSushi/toml-test/blob/v1.0.0/tests//valid/datetime/datetime.toml) Didn't find expected newline (line 2, column 18)<br />*92/96 (95.83%) passed*|
@@ -177,7 +177,7 @@ Test the compliance with the standard test suites for
 - `Not OK`: The toml file is parsed without error, but expected to fail.
 - `OK`: All files are failed to parse, as expected. Showing the last parsing
     error.
-
+    
 
 |Package|Result (BurntSushi/toml-test v1.0.0)|
 |:------|:------|
@@ -197,12 +197,12 @@ Test the speed of loading data provided by pytomlpp.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|6.25s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.72s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.87s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|3.10s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|9.69s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|53.57s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|6.66s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.63s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.91s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|3.53s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|10.74s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|58.08s (5000 iterations)|
 
 ### TestSpeedWithRtomlData
 
@@ -212,12 +212,12 @@ Test the speed of loading data provided by rtoml.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|16.20s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.33s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.23s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|6.65s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|18.71s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|140.71s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|14.94s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.99s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.29s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|6.47s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|21.53s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|152.78s (5000 iterations)|
 
 ### TestSpeedWithTomliData
 
@@ -227,10 +227,11 @@ Test the speed of loading data provided by tomli.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|12.57s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.01s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.11s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|4.35s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|13.82s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|81.82s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|10.70s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.90s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.32s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|4.39s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|14.56s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|97.04s (5000 iterations)|
+
 

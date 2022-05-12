@@ -1,5 +1,7 @@
 # toml-bench
 
+[![deps][1]][2]
+
 Which toml package to use in python?
 
 See also: [toml-lang](https://toml.io/en/) and [PEP 680](https://www.python.org/dev/peps/pep-0680/)
@@ -14,7 +16,7 @@ The verions of the packages tested in this report.
 |Package|Version|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|0.10.2|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|0.7.1|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.8.0|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.0.11|
 |[tomli](https://github.com/hukkin/tomli)|2.0.1; **tomli_w**: 1.0.0|
 |[qtoml](https://github.com/alethiophile/qtoml)|0.3.1|
@@ -168,7 +170,7 @@ loading the toml file yields the same result as the JSON counterpart.
 |Package|Result (BurntSushi/toml-test v1.1.0)|
 |:------|:------|
 |[toml](https://github.com/uiri/toml)|[comment/tricky.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/comment/tricky.toml) Parsed as unexpected data.<br />[array/mixed-int-array.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/array/mixed-int-array.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/mixed-int-float.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/array/mixed-int-float.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/mixed-string-table.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/array/mixed-string-table.toml) list index out of range<br />[array/mixed-int-string.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/array/mixed-int-string.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[array/nested-double.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/array/nested-double.toml) Not a homogeneous array (line 1 column 1 char 0)<br />[float/zero.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/float/zero.toml) Weirdness with leading zeroes or underscores in your number. (line 4 column 1 char 47)<br />[key/escapes.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/key/escapes.toml) Parsed as unexpected data.<br />[key/dotted.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/key/dotted.toml) Found invalid character in key name: '"'. Try quoting the key name. (line 12 column 11 char 245)<br />[inline-table/key-dotted.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/inline-table/key-dotted.toml) Parsed as unexpected data.<br />[inline-table/multiline.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/inline-table/multiline.toml) Invalid inline table value encountered (line 1 column 1 char 0)<br />[datetime/local-time.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/datetime/local-time.toml) Parsed as unexpected data.<br />[datetime/datetime.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/datetime/datetime.toml) Parsed as unexpected data.<br />*86/99 (86.87%) passed*|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|[key/empty.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/key/empty.toml) empty table key found at line 1 column 1<br />*98/99 (98.99%) passed*|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|OK, *99/99 (100%) passed*|
 |[pytomlpp](https://github.com/bobfang1992/pytomlpp)|OK, *99/99 (100%) passed*|
 |[tomli](https://github.com/hukkin/tomli)|OK, *99/99 (100%) passed*|
 |[qtoml](https://github.com/alethiophile/qtoml)|[comment/tricky.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/comment/tricky.toml) can't parse type (line 11, column 7)<br />[string/multiline-quotes.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/string/multiline-quotes.toml) Didn't find expected newline (line 4, column 26)<br />[datetime/milliseconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/datetime/milliseconds.toml) Didn't find expected newline (line 2, column 27)<br />[datetime/datetime.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//valid/datetime/datetime.toml) Didn't find expected newline (line 2, column 18)<br />*95/99 (95.96%) passed*|
@@ -204,12 +206,12 @@ Test the speed of loading data provided by pytomlpp.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|6.25s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|6.93s (5000 iterations)|
 |[rtoml](https://github.com/samuelcolvin/rtoml)|0.72s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.87s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|3.10s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|9.69s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|53.57s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|0.96s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|3.46s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|10.77s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|66.00s (5000 iterations)|
 
 ### TestSpeedWithRtomlData
 
@@ -219,12 +221,12 @@ Test the speed of loading data provided by rtoml.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|16.20s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.33s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.23s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|6.65s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|18.71s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|140.71s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|18.47s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|1.00s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.35s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|8.12s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|20.72s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|160.62s (5000 iterations)|
 
 ### TestSpeedWithTomliData
 
@@ -234,12 +236,13 @@ Test the speed of loading data provided by tomli.
 
 |Package|Result|
 |:------|:------|
-|[toml](https://github.com/uiri/toml)|12.57s (5000 iterations)|
-|[rtoml](https://github.com/samuelcolvin/rtoml)|1.01s (5000 iterations)|
-|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.11s (5000 iterations)|
-|[tomli](https://github.com/hukkin/tomli)|4.35s (5000 iterations)|
-|[qtoml](https://github.com/alethiophile/qtoml)|13.82s (5000 iterations)|
-|[tomlkit](https://github.com/sdispater/tomlkit)|81.82s (5000 iterations)|
+|[toml](https://github.com/uiri/toml)|10.63s (5000 iterations)|
+|[rtoml](https://github.com/samuelcolvin/rtoml)|0.87s (5000 iterations)|
+|[pytomlpp](https://github.com/bobfang1992/pytomlpp)|1.21s (5000 iterations)|
+|[tomli](https://github.com/hukkin/tomli)|4.49s (5000 iterations)|
+|[qtoml](https://github.com/alethiophile/qtoml)|16.00s (5000 iterations)|
+|[tomlkit](https://github.com/sdispater/tomlkit)|97.27s (5000 iterations)|
+
 
 ## Other reports
 
@@ -303,3 +306,5 @@ poetry install
 poetry run toml-bench
 ```
 
+[1]: https://img.shields.io/librariesio/release/pypi/toml-bench?style=flat-square
+[2]: https://libraries.io/github/pwwang/toml-bench#repository_dependencies
