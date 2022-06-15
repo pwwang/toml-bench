@@ -81,7 +81,7 @@ class TestComplianceDummy(TestCaseDummy):
             f"({100.0 * passed / self.total:.2f}%) passed*"
         )
 
-        return "<br />".join(str(e) for e in out)
+        return "<br />".join(str(e).replace("\n", " ") for e in out)
 
 
 class TestComplianceValidDummy(TestComplianceDummy):

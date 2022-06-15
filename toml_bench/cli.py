@@ -23,7 +23,7 @@ def _init_params() -> Params:
     )
     params.add_param(
         "comver",
-        default="1.1.0",
+        default="1.2.0",
         desc="The version of the toml-test to use in compliance tests",
     )
     params.add_param(
