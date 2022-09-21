@@ -13,6 +13,14 @@ tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympl
 tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
 
 [[package]]
+name = "benchwork"
+version = "0.0.1"
+description = "A framework for benchmarking in python"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[[package]]
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
@@ -236,12 +244,16 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "e8eba398835e9beaac5df449a90e924e264ae2ee10bf673468b980d7c6072871"
+content-hash = "0510a41d07446e68569696b63b9c9ea616565c99c84aa95284f3185e62fe43ff"
 
 [metadata.files]
 attrs = [
     {file = "attrs-21.4.0-py2.py3-none-any.whl", hash = "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4"},
     {file = "attrs-21.4.0.tar.gz", hash = "sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd"},
+]
+benchwork = [
+    {file = "benchwork-0.0.1-py3-none-any.whl", hash = "sha256:5ce412f6a53f51d739519a9e687901e07082b861a01010418498d1c52dedca36"},
+    {file = "benchwork-0.0.1.tar.gz", hash = "sha256:f1cd94e37f32a712f32f880d4ae9da738e890fb207919dd286009b3f4ce05040"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
