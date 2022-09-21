@@ -1,6 +1,6 @@
 from typing import Any
-from ..case import TestCase, TestCaseDummy
-from ..api import APIs
+
+from benchwork import Bench
 
 
 class VersionDummy(TestCaseDummy):

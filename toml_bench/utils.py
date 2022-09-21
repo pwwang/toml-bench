@@ -1,71 +1,8 @@
-import sys
-import math
-import logging
+
 import json
-from os import PathLike
-from importlib import import_module
-from pathlib import Path
-from types import ModuleType
-from typing import Any, Callable, Mapping, Type
-
+import math
+from typing import Any, Mapping
 from dateutil import parser
-
-# logger
-logger = logging.getLogger("toml-bench")
-logger.setLevel(logging.INFO)
-stream_handler = logging.StreamHandler(sys.stderr)
-stream_handler.setFormatter(
-    logging.Formatter(
-        "[%(asctime)s][%(levelname)7s] %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-)
-logger.addHandler(stream_handler)
-
-
-def load_subpkgs(dire: PathLike) -> Mapping[str, ModuleType]:
-    """Get all packages and the module from .packages"""
-    out = {}
-    for path in Path(__file__).parent.joinpath(dire).glob("*.py"):
-        if path.name.startswith("_"):
-            continue
-
-        out[path.stem] = import_module(
-            f".{dire}.{path.stem}",
-            package=__package__,
-        )
-
-    return out
-
-
-def get_object(
-    module: ModuleType,
-    checker: Callable[[Any], bool],
-    multi: bool = False,
-) -> Any:
-    """Get object from a module with a checker"""
-    out = [] if multi else None
-    for attr in dir(module):
-        if attr.startswith("_"):
-            continue
-
-        obj = getattr(module, attr)
-        if checker(obj):
-            if not multi:
-                return obj
-            out.append(obj)
-
-    return out
-
-
-def doc_formatter(**kwargs: Any) -> Callable[[Type], Type]:
-    """Format docstring of a class"""
-
-    def decorator(cls: Type) -> Type:
-        cls.__doc__ = cls.__doc__ % kwargs
-        return cls
-
-    return decorator
 
 
 class NAN:

@@ -14,7 +14,7 @@ pytomlpp = "^1.0.11"
 tomli = "2.0.1"
 tomli-w = "^1.0.0"
 qtoml = "^0.3.1"
-tomlkit = "^0.11.0"
+tomlkit = "^0.11.4"
 python-dateutil = "^2.8.2"
 importlib-metadata = "^4"
 # required by tomlkit, but cannot be inferred by poetry

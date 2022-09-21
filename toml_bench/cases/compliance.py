@@ -1,36 +1,64 @@
-import zipfile
-import urllib.request
-from pathlib import Path
-from typing import Any
+from __future__ import annotations
 
-from ..case import TestCase, TestCaseDummy
-from ..utils import doc_formatter, load_json_data
+from typing import TYPE_CHECKING, Any, List, Type
+from benchwork import BenchCase
 
+from ..utils import load_json_data
 
-TOML_TEST_REPO = (
-    # "https://github.com/BurntSushi/toml-test/archive/refs/tags/v1.1.0.zip"
-    "https://github.com/BurntSushi/toml-test/"
-)
+if TYPE_CHECKING:
+    from argparse import Namespace
+    from pathlib import Path
+    from benchwork import BenchAPI
 
 TEST_FILE_PREFIX = (
     "https://github.com/BurntSushi/toml-test/blob/v%(ver)s/tests/"
 )
 
 
-class TestComplianceDummy(TestCaseDummy):
+class BenchCaseCompliance(BenchCase):
 
-    OPEN_FLAG = "rb"
-    KIND = "valid"
+    KIND = None
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, args: Namespace, api_class: Type[BenchAPI]) -> None:
+        super().__init__(args, api_class)
         self.total = 0
+        self.datadir = None
 
     def _runfile(
         self,
         tomlfile: Path,
         subdir: bool = False,
     ) -> Any:
+        ...
+
+    def _result(
+        self,
+        out: List[Any],
+    ) -> Any:
+        ...
+
+    def run(self) -> Any:
+        errors = []
+        kind = self.__class__.KIND
+        for tomlfile in self.datadir.joinpath("tests", kind).glob("*.toml"):
+            out = self._runfile(tomlfile)
+            if out is not None:
+                errors.append(out)
+
+        for tomlfile in self.datadir.joinpath("tests", kind).glob("*/*.toml"):
+            out = self._runfile(tomlfile, subdir=True)
+            if out is not None:
+                errors.append(out)
+
+        return self._result(errors)
+
+
+class BenchCaseComplianceValid(BenchCaseCompliance):
+
+    KIND = "valid"
+
+    def _runfile(self, tomlfile: Path, subdir: bool = False) -> Any:
+
         self.total += 1
         filename = (
             tomlfile.name
@@ -41,7 +69,7 @@ class TestComplianceDummy(TestCaseDummy):
             f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}"
             f"/{self.__class__.KIND}/{filename}"
         )
-        with tomlfile.open(self.__class__.OPEN_FLAG) as f:
+        with tomlfile.open(self.api.OPEN_FLAG) as f:
             try:
                 data = self.api.load(f)
             except Exception as e:
@@ -56,22 +84,8 @@ class TestComplianceDummy(TestCaseDummy):
         except AssertionError as e:
             return e
 
-    def run(self, case: "TestCase") -> Any:
-        super().run(case)
-        errors = []
-        kind = self.__class__.KIND
-        for tomlfile in case.datadir.joinpath("tests", kind).glob("*.toml"):
-            out = self._runfile(tomlfile)
-            if out is not None:
-                errors.append(out)
+    def _result(self, out: List[Any]) -> Any:
 
-        for tomlfile in case.datadir.joinpath("tests", kind).glob("*/*.toml"):
-            out = self._runfile(tomlfile, subdir=True)
-            if out is not None:
-                errors.append(out)
-        return errors
-
-    def result(self, out: Any) -> str:
         if not out:
             return f"OK, *{self.total}/{self.total} (100%) passed*"
 
@@ -84,50 +98,12 @@ class TestComplianceDummy(TestCaseDummy):
         return "<br />".join(str(e).replace("\n", " ") for e in out)
 
 
-class TestComplianceValidDummy(TestComplianceDummy):
-    KIND = "valid"
-
-
-@doc_formatter(url=TOML_TEST_REPO)
-class TestComplianceValid(TestCase):
-    """Test the compliance with the standard test suites for
-        valid toml files here:
-
-    %(url)s
-
-The tests come up with a JSON counterpart that can be used to valid whether
-loading the toml file yields the same result as the JSON counterpart.
-    """
-
-    ORDER = 1
-    DUMMY_CLASS = TestComplianceValidDummy
-
-    def _prepare_data(self) -> None:
-        ver = self.args.comver
-        self.HEADER = f"{self.HEADER} (BurntSushi/toml-test v{ver})"
-        datafile = self.args.datadir / "compliance" / f"toml-test-{ver}.zip"
-        self.datadir = self.args.datadir / "compliance" / f"toml-test-{ver}"
-        self.datadir.parent.mkdir(parents=True, exist_ok=True)
-        url = f"{TOML_TEST_REPO}/archive/refs/tags/v{ver}.zip"
-        if not self.datadir.exists():
-            if not datafile.exists():
-                with urllib.request.urlopen(url) as resp, datafile.open(
-                    "wb"
-                ) as f:
-                    f.write(resp.read())
-            with zipfile.ZipFile(datafile) as zf:
-                zf.extractall(self.datadir.parent)
-
-    def prepare(self) -> None:
-        super().prepare()
-        self._prepare_data()
-
-
-class TestComplianceInValidDummy(TestComplianceDummy):
+class BenchCaseComplianceInvalid(BenchCaseCompliance):
 
     KIND = "invalid"
 
     def _runfile(self, tomlfile: Path, subdir: bool = False) -> Any:
+
         self.total += 1
         filename = (
             tomlfile.name
@@ -137,7 +113,7 @@ class TestComplianceInValidDummy(TestComplianceDummy):
         url = (
             f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}/invalid/{filename}"
         )
-        with tomlfile.open(self.__class__.OPEN_FLAG) as f:
+        with tomlfile.open(self.api.OPEN_FLAG) as f:
             try:
                 self.api.load(f)
             except Exception as e:
@@ -145,7 +121,8 @@ class TestComplianceInValidDummy(TestComplianceDummy):
             else:
                 return f"Not OK: [{filename}]({url}) incorrectly parsed."
 
-    def result(self, out: Any) -> str:
+    def _result(self, out: List[Any]) -> Any:
+
         replace_newline = lambda s: s.replace("\n", " ")
         passed = [isinstance(e, Exception) for e in out]
         failed = [e for e in out if not isinstance(e, Exception)]
@@ -165,19 +142,3 @@ class TestComplianceInValidDummy(TestComplianceDummy):
             f"({100.0 * sum(passed) / self.total:.2f}%) passed*"
         )
         return "<br />".join(replace_newline(str(e)) for e in failed)
-
-
-@doc_formatter(url=TOML_TEST_REPO)
-class TestComplianceInvalid(TestComplianceValid):
-    """Test the compliance with the standard test suites for
-        invalid toml files here:
-
-    %(url)s
-
-- `Not OK`: The toml file is parsed without error, but expected to fail.
-- `OK`: All files are failed to parse, as expected. Showing the last parsing
-    error.
-    """
-
-    ORDER = 2
-    DUMMY_CLASS = TestComplianceInValidDummy
