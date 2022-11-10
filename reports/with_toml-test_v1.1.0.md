@@ -8,9 +8,9 @@ The verions of the packages tested in this report.
 |-|-----------------------|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|0.10.2|
 |<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.0.1; **tomli_w**: 1.0.0|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|0.11.4|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|0.11.6|
 |<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.0.11|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.7.1|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.9.0|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|0.3.1|
 
 ## Dumping `None` value
@@ -205,12 +205,12 @@ Test the speed of loading data provided by `pytomlpp`
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|9.05s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|3.69s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|79.25s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.27s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|14.22s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|11.57s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|9.33s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.71s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|68.80s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.06s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.62s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|12.12s (5000 iterations)|
 
 ## Running speed with data provided by `rtoml`
 
@@ -221,12 +221,12 @@ Test the speed of loading data provided by `rtoml`
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|23.57s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|11.14s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|190.85s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.52s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|20.60s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|25.29s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|18.47s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|8.13s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|173.08s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.49s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|1.00s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|22.97s (5000 iterations)|
 
 ## Running speed with data provided by `tomli`
 
@@ -237,10 +237,10 @@ Test the speed of loading data provided by `tomli`
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|12.25s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.87s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|115.78s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.35s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|18.54s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|19.64s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|12.63s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.48s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|109.69s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.36s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.91s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|17.20s (5000 iterations)|
 

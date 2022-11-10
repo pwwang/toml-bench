@@ -1,5 +1,6 @@
 """Run tests and replace latest report"""
 import os
+import sys
 from pathlib import Path
 
 REPORTS = {
@@ -21,7 +22,7 @@ def run_test(comver):
 def render_readme():
     print("Rendering README file")
     report = []
-    rptfile = Path(f"reports/with_toml-test_latest.md")
+    rptfile = Path("reports/with_toml-test_latest.md")
     outfile = Path("./README.md")
     rawfile = Path("./README.raw.md")
 
@@ -36,7 +37,8 @@ def render_readme():
 
 
 if __name__ == "__main__":
-    # for key in REPORTS:
-    #     run_test(key)
+    if len(sys.argv) > 1 and sys.argv[1] == "run":
+        for key in REPORTS:
+            run_test(key)
 
     render_readme()

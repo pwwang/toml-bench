@@ -19,7 +19,7 @@ from .sets import (
 
 
 class BenchSuite(BenchSuite):
-    set_classes  = [
+    set_classes = [
         BenchSetVersion,
         BenchSetDumpNone,
         BenchSetDumpValueNone,

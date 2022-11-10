@@ -35,7 +35,7 @@ TOMLI_DATA_URL = (
 )
 
 RTOML_DATA_URL = (
-    "https://github.com/samuelcolvin/rtoml/raw/main/benchmarks/data.toml"
+    "https://github.com/samuelcolvin/rtoml/raw/main/tests/data.toml"
 )
 
 
@@ -281,7 +281,7 @@ class BenchSetSpeedWithPytomlppData(BenchSetSpeed):
 class BenchSetSpeedWithRtomlData(BenchSetSpeed):
     """Test the speed of loading data provided by `rtoml`
 
-    > https://github.com/samuelcolvin/rtoml/raw/main/benchmarks/data.toml
+    > https://github.com/samuelcolvin/rtoml/raw/main/tests/data.toml
     """
     package_name = "rtoml"
     url = RTOML_DATA_URL
