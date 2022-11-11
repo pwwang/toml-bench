@@ -196,6 +196,47 @@ parsing error.
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Not OK: [integer/positive-hex.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/integer/positive-hex.toml) incorrectly parsed.<br />Not OK: [integer/positive-bin.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/integer/positive-bin.toml) incorrectly parsed.<br />Not OK: [control/comment-del.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-del.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />*209/214 (97.66%) passed*|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Not OK: [inline-table/add.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/inline-table/add.toml) incorrectly parsed.<br />Not OK: [inline-table/trailing-comma.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/inline-table/trailing-comma.toml) incorrectly parsed.<br />Not OK: [control/comment-del.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-del.toml) incorrectly parsed.<br />Not OK: [control/comment-null.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-null.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-us.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-us.toml) incorrectly parsed.<br />Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-lf.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/control/comment-lf.toml) incorrectly parsed.<br />Not OK: [table/append-with-dotted-keys-1.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/table/append-with-dotted-keys-1.toml) incorrectly parsed.<br />Not OK: [table/append-with-dotted-keys-2.toml](https://github.com/BurntSushi/toml-test/blob/v1.1.0/tests//invalid/table/append-with-dotted-keys-2.toml) incorrectly parsed.<br />Not OK: *2 more items incorrectly parsed.*<br />*202/214 (94.39%) passed*|
 
+## Compliance with valid tests in python tomllib test data
+
+Test the compliance with python tomllib test data (since python 3.11)
+for valid toml files here:
+
+> https://github.com/python/cpython/tree/3.11/Lib/test/test_tomllib/data/valid
+
+The tests come up with a JSON counterpart that can be used to valid whether
+loading the toml file yields the same result as the JSON counterpart.
+
+
+| |Result (cpython tag 3.11.0)|
+|-|-----------------------|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|[five-quotes.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/five-quotes.toml) Unterminated string found. Reached end of file. (line 7 column 1 char 97)<br />[apostrophes-in-literal-string.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/apostrophes-in-literal-string.toml) Unbalanced quotes (line 1 column 50 char 49)<br />[multiline-basic-str/ends-in-whitespace-escape.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/multiline-basic-str/ends-in-whitespace-escape.toml) Reserved escape sequence used (line 6 column 1 char 28)<br />[dates-and-times/datetimes.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/dates-and-times/datetimes.toml) Parsed as unexpected data.<br />*8/12 (66.67%) passed*|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|OK, *12/12 (100%) passed*|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|OK, *12/12 (100%) passed*|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|[array/open-parent-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/array/open-parent-table.toml) Error while parsing table header: cannot redefine existing table 'parent-table' 	(error occurred at line 3, column 1)<br />*11/12 (91.67%) passed*|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|OK, *12/12 (100%) passed*|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|[five-quotes.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/five-quotes.toml) Didn't find expected newline (line 3, column 3)<br />[apostrophes-in-literal-string.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/apostrophes-in-literal-string.toml) Didn't find expected newline (line 3, column 3)<br />[dates-and-times/datetimes.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//valid/dates-and-times/datetimes.toml) Didn't find expected newline (line 1, column 19)<br />*9/12 (75.00%) passed*|
+
+## Compliance with invalid tests in python tomllib test data
+
+Test the compliance with python tomllib test data (since python 3.11)
+for invalid toml files here:
+
+> https://github.com/python/cpython/tree/main/Lib/test/test_tomllib/data/invalid
+
+- `Not OK`: The toml file is parsed without error, but expected to fail.
+- `OK`: All files are failed to parse, as expected. Showing the last
+parsing error.
+
+
+| |Result (cpython tag 3.11.0)|
+|-|-----------------------|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Not OK: [invalid-comment-char.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/invalid-comment-char.toml) incorrectly parsed.<br />Not OK: [array/file-end-after-val.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/array/file-end-after-val.toml) incorrectly parsed.<br />Not OK: [array/unclosed-empty.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/array/unclosed-empty.toml) incorrectly parsed.<br />Not OK: [array/unclosed-after-item.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/array/unclosed-after-item.toml) incorrectly parsed.<br />Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table-with-subtable.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table-with-subtable.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table.toml) incorrectly parsed.<br />Not OK: [inline-table/overwrite-value-in-inner-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/inline-table/overwrite-value-in-inner-table.toml) incorrectly parsed.<br />Not OK: [inline-table/unclosed-empty.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/inline-table/unclosed-empty.toml) incorrectly parsed.<br />*41/50 (82.00%) passed*|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|OK: [dates-and-times/invalid-day.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dates-and-times/invalid-day.toml) Invalid date or datetime (at line 1, column 36)<br /> *50/50 (100%) passed*|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />Not OK: [array-of-tables/overwrite-array-in-parent.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/array-of-tables/overwrite-array-in-parent.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-aot.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-aot.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table-with-subtable.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table-with-subtable.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table.toml) incorrectly parsed.<br />Not OK: [inline-table/override-val-in-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/inline-table/override-val-in-table.toml) incorrectly parsed.<br />*44/50 (88.00%) passed*|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />*49/50 (98.00%) passed*|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />*49/50 (98.00%) passed*|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Not OK: [invalid-comment-char.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/invalid-comment-char.toml) incorrectly parsed.<br />Not OK: [non-scalar-escaped.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/non-scalar-escaped.toml) incorrectly parsed.<br />Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table-with-subtable.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table-with-subtable.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table.toml) incorrectly parsed.<br />Not OK: [inline-table/override-val-with-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/inline-table/override-val-with-table.toml) incorrectly parsed.<br />Not OK: [inline-table/overwrite-value-in-inner-table.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/inline-table/overwrite-value-in-inner-table.toml) incorrectly parsed.<br />Not OK: [table/redefine-2.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/table/redefine-2.toml) incorrectly parsed.<br />Not OK: [table/redefine-1.toml](https://github.com/python/cpython/tree/v3.11.0/Lib/test/test_tomllib/data//invalid/table/redefine-1.toml) incorrectly parsed.<br />*41/50 (82.00%) passed*|
+
 ## Running speed with data provided by `pytomlpp`
 
 Test the speed of loading data provided by `pytomlpp`
@@ -205,28 +246,28 @@ Test the speed of loading data provided by `pytomlpp`
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|9.33s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.71s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|68.80s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.06s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.62s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|12.12s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|7.63s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|3.68s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|65.41s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|0.97s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.54s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|11.20s (5000 iterations)|
 
 ## Running speed with data provided by `rtoml`
 
 Test the speed of loading data provided by `rtoml`
 
-> https://github.com/samuelcolvin/rtoml/raw/main/benchmarks/data.toml
+> https://github.com/samuelcolvin/rtoml/raw/main/tests/data.toml
 
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|18.47s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|8.13s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|173.08s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.49s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|1.00s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|22.97s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|17.95s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|9.86s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|165.51s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.32s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.90s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|20.73s (5000 iterations)|
 
 ## Running speed with data provided by `tomli`
 
@@ -237,10 +278,10 @@ Test the speed of loading data provided by `tomli`
 
 | |Speed|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|12.63s (5000 iterations)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.48s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|109.69s (5000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.36s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.91s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|17.20s (5000 iterations)|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|11.74s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|5.10s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|101.83s (5000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.19s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.74s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|14.61s (5000 iterations)|
 
