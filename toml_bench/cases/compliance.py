@@ -10,19 +10,31 @@ if TYPE_CHECKING:
     from pathlib import Path
     from benchwork import BenchAPI
 
+# used to indicate the souce of the data
 TEST_FILE_PREFIX = (
     "https://github.com/BurntSushi/toml-test/blob/v%(ver)s/tests/"
+)
+TOMLLIB_TEST_FILE_PREFIX = (
+    "https://github.com/python/cpython/"
+    "tree/v%(ver)s/Lib/test/test_tomllib/data/"
 )
 
 
 class BenchCaseCompliance(BenchCase):
 
     KIND = None
+    SUBDIR = "tests"
 
     def __init__(self, args: Namespace, api_class: Type[BenchAPI]) -> None:
         super().__init__(args, api_class)
         self.total = 0
         self.datadir = None
+
+    def fileurl(self, filename: str) -> str:
+        return (
+            f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}"
+            f"/{self.__class__.KIND}/{filename}"
+        )
 
     def _runfile(
         self,
@@ -40,12 +52,13 @@ class BenchCaseCompliance(BenchCase):
     def run(self) -> Any:
         errors = []
         kind = self.__class__.KIND
-        for tomlfile in self.datadir.joinpath("tests", kind).glob("*.toml"):
+        subdir = self.__class__.SUBDIR
+        for tomlfile in self.datadir.joinpath(subdir, kind).glob("*.toml"):
             out = self._runfile(tomlfile)
             if out is not None:
                 errors.append(out)
 
-        for tomlfile in self.datadir.joinpath("tests", kind).glob("*/*.toml"):
+        for tomlfile in self.datadir.joinpath(subdir, kind).glob("*/*.toml"):
             out = self._runfile(tomlfile, subdir=True)
             if out is not None:
                 errors.append(out)
@@ -65,10 +78,7 @@ class BenchCaseComplianceValid(BenchCaseCompliance):
             if not subdir
             else f"{tomlfile.parent.name}/{tomlfile.name}"
         )
-        url = (
-            f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}"
-            f"/{self.__class__.KIND}/{filename}"
-        )
+        url = self.fileurl(filename)
         with tomlfile.open(self.api.OPEN_FLAG) as f:
             try:
                 data = self.api.load(f)
@@ -110,9 +120,7 @@ class BenchCaseComplianceInvalid(BenchCaseCompliance):
             if not subdir
             else f"{tomlfile.parent.name}/{tomlfile.name}"
         )
-        url = (
-            f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}/invalid/{filename}"
-        )
+        url = self.fileurl(filename)
         with tomlfile.open(self.api.OPEN_FLAG) as f:
             try:
                 self.api.load(f)
@@ -123,7 +131,7 @@ class BenchCaseComplianceInvalid(BenchCaseCompliance):
 
     def _result(self, out: List[Any]) -> Any:
 
-        replace_newline = lambda s: s.replace("\n", " ")
+        replace_newline = lambda s: s.replace("\n", " ")  # noqa: E731
         passed = [isinstance(e, Exception) for e in out]
         failed = [e for e in out if not isinstance(e, Exception)]
         if all(passed):
@@ -142,3 +150,22 @@ class BenchCaseComplianceInvalid(BenchCaseCompliance):
             f"({100.0 * sum(passed) / self.total:.2f}%) passed*"
         )
         return "<br />".join(replace_newline(str(e)) for e in failed)
+
+
+class BenchCaseTomllibComplianceValid(BenchCaseComplianceValid):
+
+    SUBDIR = "Lib/test/test_tomllib/data"
+
+    def fileurl(self, filename: str) -> str:
+        return (
+            f"{TOMLLIB_TEST_FILE_PREFIX % {'ver': self.args.cpyver}}"
+            f"/{self.__class__.KIND}/{filename}"
+        )
+
+
+class BenchCaseTomllibComplianceInvalid(
+    BenchCaseComplianceInvalid,
+    BenchCaseTomllibComplianceValid,
+):
+
+    ...

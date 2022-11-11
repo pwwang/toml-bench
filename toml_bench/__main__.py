@@ -32,6 +32,11 @@ def init_params() -> Params:
         desc="The version of the toml-test to use in compliance tests",
     )
     params.add_param(
+        "cpyver",
+        default="3.11.0",
+        desc="The version (tag) of cpython to grab the tomllib test data",
+    )
+    params.add_param(
         "iter",
         default=5000,
         desc="The number of iterations to run in speed tests",

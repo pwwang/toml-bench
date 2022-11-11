@@ -21,10 +21,14 @@ from .cases.unicode import (
 from .cases.compliance import (
     BenchCaseComplianceValid,
     BenchCaseComplianceInvalid,
+    BenchCaseTomllibComplianceValid,
+    BenchCaseTomllibComplianceInvalid,
 )
 from .cases.speed import BenchCaseSpeed
 
 TOML_TEST_REPO = "https://github.com/BurntSushi/toml-test/"
+
+TOMLLIB_DATA_REPO = "https://github.com/python/cpython"
 
 PYTOMLPP_DATA_URL = (
     "https://github.com/bobfang1992/pytomlpp/raw/master/benchmark/data.toml"
@@ -230,6 +234,78 @@ class BenchSetComplianceInvalid(BenchSetTable):
         # data prepared in BenchSetComplianceValid
         for case in self.cases:
             case.datadir = self.args.datadir / "compliance" / f"toml-test-{ver}"
+            case.prepare()
+
+
+class BenchSetTomllibComplianceValid(BenchSetTable):
+    """Test the compliance with python tomllib test data (since python 3.11)
+    for valid toml files here:
+
+    > https://github.com/python/cpython/tree/3.11/Lib/test/test_tomllib/data/valid
+
+    The tests come up with a JSON counterpart that can be used to valid whether
+    loading the toml file yields the same result as the JSON counterpart.
+    """  # noqa: E501
+    title = "Compliance with valid tests in python tomllib test data"
+    api_base = APIBase
+    case = BenchCaseTomllibComplianceValid
+
+    @property
+    def header(self) -> str:
+        return f"Result (cpython tag {self.args.cpyver})"
+
+    def prepare_cases(self):
+
+        datafile = self.args.datadir.joinpath(
+            "tomllib-compliance",
+            f"tomllib-data-{self.args.cpyver}.zip",
+        )
+        datadir = self.args.datadir.joinpath(
+            "tomllib-compliance",
+            f"tomllib-data-{self.args.cpyver}",
+        )
+        datadir.parent.mkdir(parents=True, exist_ok=True)
+        url = f"{TOMLLIB_DATA_REPO}/archive/refs/tags/v{self.args.cpyver}.zip"
+        if not datadir.exists():
+            if not datafile.exists():
+                with urllib.request.urlopen(url) as resp, datafile.open(
+                    "wb"
+                ) as f:
+                    f.write(resp.read())
+            with zipfile.ZipFile(datafile) as zf:
+                namelist = zf.namelist()
+                first = namelist[0]
+                member_data = f"{first}Lib/test/test_tomllib/data/"
+                members = [m for m in namelist if m.startswith(member_data)]
+                zf.extractall(datadir.parent, members=members)
+            datadir.parent.joinpath(first).rename(datadir)
+
+        for case in self.cases:
+            case.datadir = datadir
+            case.prepare()
+
+
+class BenchSetTomllibComplianceInvalid(BenchSetTomllibComplianceValid):
+    """Test the compliance with python tomllib test data (since python 3.11)
+    for invalid toml files here:
+
+    > https://github.com/python/cpython/tree/main/Lib/test/test_tomllib/data/invalid
+
+    - `Not OK`: The toml file is parsed without error, but expected to fail.
+    - `OK`: All files are failed to parse, as expected. Showing the last
+    parsing error.
+    """  # noqa: E501
+    title = "Compliance with invalid tests in python tomllib test data"
+    case = BenchCaseTomllibComplianceInvalid
+
+    def prepare_cases(self):
+
+        # data prepared in BenchSetTomllibComplianceValid
+        for case in self.cases:
+            case.datadir = self.args.datadir.joinpath(
+                "tomllib-compliance",
+                f"tomllib-data-{self.args.cpyver}",
+            )
             case.prepare()
 
 
