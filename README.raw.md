@@ -12,7 +12,7 @@ See also: [toml-lang](https://toml.io/en/) and [PEP 680](https://www.python.org/
 
 - [Tests with `toml-test` v1.0.0](./reports/with_toml-test_v1.0.0.md)
 - [Tests with `toml-test` v1.1.0](./reports/with_toml-test_v1.1.0.md)
-
+- [Tests with python 3.11 (`tomllib` included)](./reports/with_python3.11.md)
 
 ## Run your own report
 

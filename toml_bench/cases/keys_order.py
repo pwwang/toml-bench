@@ -13,13 +13,16 @@ class BenchCaseDumpKeysOrder(BenchCase):
         e2 = "b = 1\nc = 2\na = 3\n"
         e3 = "c = 1\na = 2\nb = 3\n"
 
-        if (
-            self.api.dumps(v1) == e1
-            and self.api.dumps(v2) == e2
-            and self.api.dumps(v3) == e3
-        ):
-            return "Kept"
-        return "Lost"
+        try:
+            if (
+                self.api.dumps(v1) == e1
+                and self.api.dumps(v2) == e2
+                and self.api.dumps(v3) == e3
+            ):
+                return "Kept"
+            return "Lost"
+        except Exception as ex:
+            return str(ex)
 
 
 class BenchCaseLoadKeysOrder(BenchCase):

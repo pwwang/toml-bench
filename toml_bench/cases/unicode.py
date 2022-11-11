@@ -22,5 +22,5 @@ class BenchCaseLoadsUnicode(BenchCase):
                 with open(self.datafile, "rb") as f2:
                     loaded = self.api.load(f2)
                     return f"{e1}\nWhen loaded with `rb`:\n{loaded}"
-            except Exception as e2:
+            except Exception:
                 return e1
