@@ -37,6 +37,11 @@ def init_params() -> Params:
         desc="The version (tag) of cpython to grab the tomllib test data",
     )
     params.add_param(
+        "nocache",
+        default=False,
+        desc="Do not use cached data, re-download them.",
+    )
+    params.add_param(
         "iter",
         default=5000,
         desc="The number of iterations to run in speed tests",

@@ -196,7 +196,7 @@ class BenchSetComplianceValid(BenchSetTable):
         datadir = self.args.datadir / "compliance" / f"toml-test-{ver}"
         datadir.parent.mkdir(parents=True, exist_ok=True)
         url = f"{TOML_TEST_REPO}/archive/refs/tags/v{ver}.zip"
-        if not datadir.exists():
+        if not datadir.exists() or self.args.nocache:
             if not datafile.exists():
                 with urllib.request.urlopen(url) as resp, datafile.open(
                     "wb"
@@ -266,7 +266,7 @@ class BenchSetTomllibComplianceValid(BenchSetTable):
         )
         datadir.parent.mkdir(parents=True, exist_ok=True)
         url = f"{TOMLLIB_DATA_REPO}/archive/refs/tags/v{self.args.cpyver}.zip"
-        if not datadir.exists():
+        if not datadir.exists() or self.args.nocache:
             if not datafile.exists():
                 with urllib.request.urlopen(url) as resp, datafile.open(
                     "wb"
@@ -331,7 +331,7 @@ class BenchSetSpeed(BenchSetSpeed):
 
         datafile = self.args.datadir / "speed" / f"{self.package_name}.toml"
 
-        if not datafile.exists():
+        if not datafile.exists() or self.args.nocache:
             datafile.parent.mkdir(parents=True, exist_ok=True)
             with urllib.request.urlopen(self.url) as resp, datafile.open(
                 "wb"
