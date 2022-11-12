@@ -1,7 +1,7 @@
 import zipfile
 import urllib.request
 
-from benchwork import BenchSetVersion, BenchSetTable, BenchSetSpeed
+from benchwork import BenchSetVersion, BenchSetTable, BenchSetMultiColTable
 
 from .api import APIBase
 from .cases.value_none import (
@@ -309,9 +309,9 @@ class BenchSetTomllibComplianceInvalid(BenchSetTomllibComplianceValid):
             case.prepare()
 
 
-class BenchSetSpeed(BenchSetSpeed):
+class BenchSetSpeed(BenchSetMultiColTable):
 
-    header = "Speed"
+    header = ["Loading speed", "Dumping speed"]
     api_base = APIBase
     case = BenchCaseSpeed
 
@@ -346,7 +346,8 @@ class BenchSetSpeed(BenchSetSpeed):
 
 
 class BenchSetSpeedWithPytomlppData(BenchSetSpeed):
-    """Test the speed of loading data provided by `pytomlpp`
+    """Test the speed of loading and dumping the loaded
+    using data provided by `pytomlpp`
 
     > https://github.com/bobfang1992/pytomlpp/raw/master/benchmark/data.toml
     """
@@ -355,7 +356,8 @@ class BenchSetSpeedWithPytomlppData(BenchSetSpeed):
 
 
 class BenchSetSpeedWithRtomlData(BenchSetSpeed):
-    """Test the speed of loading data provided by `rtoml`
+    """Test the speed of loading and dumping the loaded using data
+    provided by `rtoml`
 
     > https://github.com/samuelcolvin/rtoml/raw/main/tests/data.toml
     """
@@ -364,7 +366,8 @@ class BenchSetSpeedWithRtomlData(BenchSetSpeed):
 
 
 class BenchSetSpeedWithTomliData(BenchSetSpeed):
-    """Test the speed of loading data provided by `tomli`
+    """Test the speed of loading and dumping the loaded using data
+    provided by `tomli`
 
     > https://github.com/hukkin/tomli/raw/master/benchmark/data.toml
     """

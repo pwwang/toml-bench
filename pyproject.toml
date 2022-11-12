@@ -6,7 +6,7 @@ authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-benchwork = "^0.0.1"
+benchwork = "^0.0.2"
 python = "^3.9"
 pyparam = "^0.5"
 toml = "^0.10.2"

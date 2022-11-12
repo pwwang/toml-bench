@@ -14,7 +14,7 @@ tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy"
 
 [[package]]
 name = "benchwork"
-version = "0.0.1"
+version = "0.0.2"
 description = "A framework for benchmarking in python"
 category = "main"
 optional = false
@@ -244,7 +244,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "604ebfd0e6ad6698bc74b32750378766d90e1cb0bc36f13adca629a1fdc7f60c"
+content-hash = "13d34e242f9996b15abee75e63dbcf53fdae48af51e22c272e274cf23c59e95a"
 
 [metadata.files]
 attrs = [
@@ -252,8 +252,8 @@ attrs = [
     {file = "attrs-21.4.0.tar.gz", hash = "sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd"},
 ]
 benchwork = [
-    {file = "benchwork-0.0.1-py3-none-any.whl", hash = "sha256:5ce412f6a53f51d739519a9e687901e07082b861a01010418498d1c52dedca36"},
-    {file = "benchwork-0.0.1.tar.gz", hash = "sha256:f1cd94e37f32a712f32f880d4ae9da738e890fb207919dd286009b3f4ce05040"},
+    {file = "benchwork-0.0.2-py3-none-any.whl", hash = "sha256:108ca9bd7aef958ff0b5af1e41d654d95296629ffcffb2b49a9ba1a9347f1fb2"},
+    {file = "benchwork-0.0.2.tar.gz", hash = "sha256:5e6c3ba005c535485534bb67fe48b16a153739103c2d4e319eca57730701fdbe"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
