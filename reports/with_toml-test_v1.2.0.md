@@ -86,12 +86,12 @@ Literally `<package>.dumps({"v": [1, 1.2, True, "string"]})`
 
 | |Dumped value or error|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|v = [ 1, 1.2, true, "string",]<br />|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|v = [<br />    1,<br />    1.2,<br />    true,<br />    "string",<br />]<br />|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|v = [1, 1.2, true, "string"]<br />|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|v = [ 1, 1.2, 1, 'string' ]|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|v = [1, 1.2, true, "string"]<br />|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|v = [1, 1.2, true, 'string']<br />|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|v&nbsp;=&nbsp;\[&nbsp;1,&nbsp;1.2,&nbsp;true,&nbsp;"string",\]<br />|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|v&nbsp;=&nbsp;\[<br />&nbsp;&nbsp;&nbsp;&nbsp;1,<br />&nbsp;&nbsp;&nbsp;&nbsp;1.2,<br />&nbsp;&nbsp;&nbsp;&nbsp;true,<br />&nbsp;&nbsp;&nbsp;&nbsp;"string",<br />\]<br />|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;"string"\]<br />|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|v&nbsp;=&nbsp;\[&nbsp;1,&nbsp;1.2,&nbsp;1,&nbsp;'string'&nbsp;\]|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;"string"\]<br />|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;'string'\]<br />|
 
 ## Loading a heterogenous array
 
@@ -103,11 +103,11 @@ Literally `<package>.loads('v = [1, 1.2, True, "string"]')`
 | |Loaded as|
 |-|-----------------------|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Not a homogeneous array (line 2 column 1 char 1)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|{'v': [1, 1.2, True, 'string']}|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|{'v': [1, 1.2, True, 'string']}|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|{'v': [1, 1.2, True, 'string']}|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'v': [1, 1.2, True, 'string']}|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|{'v': [1, 1.2, True, 'string']}|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|`{'v': [1, 1.2, True, 'string']}`|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|`{'v': [1, 1.2, True, 'string']}`|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|`{'v': [1, 1.2, True, 'string']}`|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|`{'v': [1, 1.2, True, 'string']}`|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|`{'v': [1, 1.2, True, 'string']}`|
 
 ## Dumping a nested array
 
@@ -118,12 +118,12 @@ Literally `<package>.dumps({"v": [[1], [1, 2]]})`
 
 | |Dumped value or error|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|<pre>v = [ [ 1,], [ 1, 2,],]<br /></pre>|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|<pre>v = [<br />    [<br />        1,<br />    ],<br />    [<br />        1,<br />        2,<br />    ],<br />]<br /></pre>|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|<pre>v = [[1], [1, 2]]<br /></pre>|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|<pre>v = [ [ 1 ], [ 1, 2 ] ]</pre>|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|<pre>v = [[1], [1, 2]]<br /></pre>|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|<pre>v = [[1], [1, 2]]<br /></pre>|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|v&nbsp;=&nbsp;\[&nbsp;\[&nbsp;1,\],&nbsp;\[&nbsp;1,&nbsp;2,\],\]<br />|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|v&nbsp;=&nbsp;\[<br />&nbsp;&nbsp;&nbsp;&nbsp;\[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,<br />&nbsp;&nbsp;&nbsp;&nbsp;\],<br />&nbsp;&nbsp;&nbsp;&nbsp;\[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,<br />&nbsp;&nbsp;&nbsp;&nbsp;\],<br />\]<br />|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|v&nbsp;=&nbsp;\[&nbsp;\[&nbsp;1&nbsp;\],&nbsp;\[&nbsp;1,&nbsp;2&nbsp;\]&nbsp;\]|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
 
 ## Loading a nested array
 
@@ -134,12 +134,12 @@ Literally `<package>.loads('v = [[1], [1, 2]]')`
 
 | |Loaded as|
 |-|-----------------------|
-|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|{'v': [[1], [1, 2]]}|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|{'v': [[1], [1, 2]]}|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|{'v': [[1], [1, 2]]}|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|{'v': [[1], [1, 2]]}|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'v': [[1], [1, 2]]}|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|{'v': [[1], [1, 2]]}|
+|<a target="_blank" href="https://github.com/uiri/toml">toml</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|`{'v': [[1], [1, 2]]}`|
 
 ## Dumping keeps order of keys?
 
@@ -312,11 +312,11 @@ using data provided by `pytomlpp`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|8.17s (1000 iterations)|4.00s (1000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|144.28s (1000 iterations)|2.39s (1000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.53s (1000 iterations)|1.11s (1000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|1.14s (1000 iterations)|values must be emitted before tables|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|19.34s (1000 iterations)|4.92s (1000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|7.34s (1000 iterations)|3.21s (1000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|146.22s (1000 iterations)|2.32s (1000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|1.61s (1000 iterations)|1.08s (1000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|1.00s (1000 iterations)|values must be emitted before tables|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|18.91s (1000 iterations)|5.37s (1000 iterations)|
 
 ## Running speed with data provided by `rtoml`
 
@@ -329,11 +329,11 @@ provided by `rtoml`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.63s (1000 iterations)|0.57s (1000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|31.80s (1000 iterations)|0.82s (1000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|0.24s (1000 iterations)|0.20s (1000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.20s (1000 iterations)|0.05s (1000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|4.59s (1000 iterations)|1.33s (1000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.71s (1000 iterations)|0.56s (1000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|30.65s (1000 iterations)|0.90s (1000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|0.30s (1000 iterations)|0.24s (1000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.23s (1000 iterations)|0.06s (1000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|5.47s (1000 iterations)|1.47s (1000 iterations)|
 
 ## Running speed with data provided by `tomli`
 
@@ -346,9 +346,9 @@ provided by `tomli`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.20s (1000 iterations)|0.39s (1000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|20.44s (1000 iterations)|0.41s (1000 iterations)|
-|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|0.24s (1000 iterations)|0.16s (1000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.25s (1000 iterations)|0.42s (1000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|19.34s (1000 iterations)|0.39s (1000 iterations)|
+|<a target="_blank" href="https://github.com/bobfang1992/pytomlpp">pytomlpp</a>|0.25s (1000 iterations)|0.16s (1000 iterations)|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.16s (1000 iterations)|0.10s (1000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|3.38s (1000 iterations)|0.86s (1000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|3.19s (1000 iterations)|0.87s (1000 iterations)|
 

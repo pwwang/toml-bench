@@ -8,7 +8,12 @@ class BenchCaseDumpsHeteroArray(BenchCase):
             "v": [1, 1.2, True, "string"]
         }
         try:
-            return self.api.dumps(v1)
+            return (
+                self.api.dumps(v1)
+                .replace('[', r'\[')
+                .replace(']', r'\]')
+                .replace(' ', '&nbsp;')
+            )
         except Exception as e:
             return e
 
@@ -20,7 +25,7 @@ class BenchCaseLoadsHeteroArray(BenchCase):
             v = [1, 1.2, true, "string"]
         """
         try:
-            return self.api.loads(v1)
+            return f"`{self.api.loads(v1)}`"
         except Exception as e1:
             return e1
 
@@ -31,7 +36,12 @@ class BenchCaseDumpsNestedArray(BenchCase):
             "v": [[1], [1, 2]]
         }
         try:
-            return '<pre>' + self.api.dumps(v1) + '</pre>'
+            return (
+                self.api.dumps(v1)
+                .replace('[', r'\[')
+                .replace(']', r'\]')
+                .replace(' ', '&nbsp;')
+            )
         except Exception as e:
             return e
 
@@ -43,6 +53,6 @@ class BenchCaseLoadsNestedArray(BenchCase):
             v = [[1], [1, 2]]
         """
         try:
-            return self.api.loads(v1)
+            return f"`{self.api.loads(v1)}`"
         except Exception as e1:
             return e1

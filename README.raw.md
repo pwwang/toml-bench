@@ -50,7 +50,7 @@ toml-bench --comver 1.0.0
 #### Use a different number of iterations in speed tests
 
 ```shell
-toml-bench --iter 1000
+toml-bench --iter 5000
 ```
 
 #### Test with different versions of packages
