@@ -81,7 +81,7 @@ Literally `<package>.loads('v1 = "null" v2 = "None"')`
 
 How the package dumps a python dictionary with a heterogenous array.
 
-Literally `<package>.dumps({"v": [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]})`
+Literally `<package>.dumps({"v": [1, 1.2, True, "string"]})`
 
 
 | |Dumped value or error|
@@ -97,7 +97,7 @@ Literally `<package>.dumps({"v": [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 
 
 How the package loads a toml string with a heterogenous array.
 
-Literally `<package>.loads('v = [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]')`
+Literally `<package>.loads('v = [1, 1.2, True, "string"]')`
 
 
 | |Loaded as|

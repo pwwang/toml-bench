@@ -108,7 +108,7 @@ class BenchSetLoadNoneLike(BenchSetTable):
 class BenchSetDumpsHeteroArray(BenchSetTable):
     """How the package dumps a python dictionary with a heterogenous array.
 
-    Literally `<package>.dumps({"v": [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]})`
+    Literally `<package>.dumps({"v": [1, 1.2, True, "string"]})`
     """
 
     title = "Dumping a heterogenous array"
@@ -120,7 +120,7 @@ class BenchSetDumpsHeteroArray(BenchSetTable):
 class BenchSetLoadsHeteroArray(BenchSetTable):
     """How the package loads a toml string with a heterogenous array.
 
-    Literally `<package>.loads('v = [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]')`
+    Literally `<package>.loads('v = [1, 1.2, True, "string"]')`
     """
 
     title = "Loading a heterogenous array"
