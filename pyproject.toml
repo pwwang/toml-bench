@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "toml-bench"
-version = "0.2.1"
+version = "0.3.0"
 description = "Benchmarking for python toml libraries"
 authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
