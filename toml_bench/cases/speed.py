@@ -28,6 +28,12 @@ class BenchCaseSpeed(BenchCaseSpeed):
         return self.api.dumps(self.loaded)
 
     def run(self) -> Any:
+        if self.api._name == "toml":
+            return [
+                "Excluded (heterogeneous arrays not supported)",
+                "Excluded (heterogeneous arrays not supported)",
+            ]
+
         self.run_core = self.run_loading
         out = super().run()
         loading = f"{out:.2f}s ({self.args.iter} iterations)"

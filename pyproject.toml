@@ -12,11 +12,11 @@ pyparam = "^0.5"
 toml = "^0.10.2"
 rtoml = "^0.9.0"
 # pytomlpp does not support python 3.11 yet
-pytomlpp = {version = "^1.0.11", python = "<3.11"}
+pytomlpp = {version = "^1.0.13", python = "<3.11"}
 tomli = "^2.0.1"
 tomli-w = "^1.0.0"
 qtoml = "^0.3.1"
-tomlkit = "^0.11.6"
+tomlkit = "^0.11.8"
 python-dateutil = "^2.8.2"
 importlib-metadata = "^5.0.0"
 # required by tomlkit, but cannot be inferred by poetry

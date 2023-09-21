@@ -4,7 +4,8 @@ import sys
 from pathlib import Path
 
 REPORTS = {
-    "latest": "1.2.0",
+    "latest": "1.3.0",
+    "v1.2.0": "1.2.0",
     "v1.1.0": "1.1.0",
     "v1.0.0": "1.0.0",
 }
@@ -15,7 +16,7 @@ def run_test(comver):
 
     outfile = f"reports/with_toml-test_{comver}.md"
 
-    cmd = f"python -m toml_bench --comver {REPORTS[comver]} --report {outfile}"
+    cmd = f"python -m toml_bench --iter 1000 --comver {REPORTS[comver]} --report {outfile}"
     os.system(cmd)
 
 

@@ -10,6 +10,12 @@ from .cases.value_none import (
     BenchCaseDumpNone,
     BenchCaseLoadNoneLike,
 )
+from .cases.hetero_array import (
+    BenchCaseDumpsHeteroArray,
+    BenchCaseLoadsHeteroArray,
+    BenchCaseDumpsNestedArray,
+    BenchCaseLoadsNestedArray,
+)
 from .cases.keys_order import (
     BenchCaseDumpKeysOrder,
     BenchCaseLoadKeysOrder,
@@ -97,6 +103,53 @@ class BenchSetLoadNoneLike(BenchSetTable):
     header = "Loaded as"
     api_base = APIBase
     case = BenchCaseLoadNoneLike
+
+
+class BenchSetDumpsHeteroArray(BenchSetTable):
+    """How the package dumps a python dictionary with a heterogenous array.
+
+    Literally `<package>.dumps({"v": [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]})`
+    """
+
+    title = "Dumping a heterogenous array"
+    header = "Dumped value or error"
+    api_base = APIBase
+    case = BenchCaseDumpsHeteroArray
+
+
+class BenchSetLoadsHeteroArray(BenchSetTable):
+    """How the package loads a toml string with a heterogenous array.
+
+    Literally `<package>.loads('v = [1, 1.2, True, "string", [1, 2], {"a": 1, "b": 2}]')`
+    """
+
+    title = "Loading a heterogenous array"
+    header = "Loaded as"
+    api_base = APIBase
+    case = BenchCaseLoadsHeteroArray
+
+
+class BenchSetDumpsNestedArray(BenchSetTable):
+    """How the package dumps a python dictionary with a nested array.
+
+    Literally `<package>.dumps({"v": [[1], [1, 2]]})`
+    """
+
+    title = "Dumping a nested array"
+    header = "Dumped value or error"
+    api_base = APIBase
+    case = BenchCaseDumpsNestedArray
+
+
+class BenchSetLoadsNestedArray(BenchSetTable):
+    """How the package loads a toml string with a nested array.
+
+    Literally `<package>.loads('v = [[1], [1, 2]]')`
+    """
+    title = "Loading a nested array"
+    header = "Loaded as"
+    api_base = APIBase
+    case = BenchCaseLoadsNestedArray
 
 
 class BenchSetDumpKeysOrder(BenchSetTable):
