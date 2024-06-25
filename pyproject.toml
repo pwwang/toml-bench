@@ -1,26 +1,26 @@
 [tool.poetry]
 name = "toml-bench"
-version = "0.3.1"
+version = "0.4.0"
 description = "Benchmarking for python toml libraries"
 authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-benchwork = "^0.0.2"
 python = "^3.9"
-pyparam = "^0.5"
+benchwork = "^0.0.2"
 toml = "^0.10.2"
-rtoml = "^0.9.0"
+rtoml = "^0.11.0"
 # pytomlpp does not support python 3.11 yet
 pytomlpp = {version = "^1.0.13", python = "<3.11"}
 tomli = "^2.0.1"
 tomli-w = "^1.0.0"
 qtoml = "^0.3.1"
-tomlkit = "^0.11.8"
+tomlkit = "^0.12.5"
 python-dateutil = "^2.8.2"
-importlib-metadata = "^5.0.0"
+importlib-metadata = "^7.2.1"
 # required by tomlkit, but cannot be inferred by poetry
-regex = "^2022.10.31"
+regex = "^2024.5.15"
+argx = "^0.2.10"
 
 [tool.poetry.dev-dependencies]
 

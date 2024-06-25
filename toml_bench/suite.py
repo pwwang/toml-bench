@@ -18,7 +18,7 @@ from .sets import (
     BenchSetComplianceInvalid,
     BenchSetTomllibComplianceValid,
     BenchSetTomllibComplianceInvalid,
-    BenchSetSpeedWithPytomlppData,
+    # BenchSetSpeedWithPytomlppData,
     BenchSetSpeedWithRtomlData,
     BenchSetSpeedWithTomliData,
 )
@@ -43,7 +43,7 @@ class BenchSuite(BenchSuite):
         BenchSetComplianceInvalid,
         BenchSetTomllibComplianceValid,
         BenchSetTomllibComplianceInvalid,
-        BenchSetSpeedWithPytomlppData,
+        # BenchSetSpeedWithPytomlppData,
         BenchSetSpeedWithRtomlData,
         BenchSetSpeedWithTomliData,
     ]

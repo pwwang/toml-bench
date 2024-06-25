@@ -1,57 +1,59 @@
 from benchwork import run_suite
-from pyparam import Params
+from argx import ArgumentParser
 
 from .suite import BenchSuite
 
 
-def init_params() -> Params:
-    params = Params(
+def init_params() -> ArgumentParser:
+    """Init the parameters"""
+    parser = ArgumentParser(
         prog="toml_bench",
-        help_on_void=False,
-        desc="Benchmarking on toml packages in python",
+        description="Benchmarking on toml packages in python",
     )
-    params.add_param(
-        "datadir",
+    parser.add_argument(
+        "--datadir",
         type="path",
         default="/tmp/toml-bench",
-        desc="Where to put the test-data",
+        help="Where to put the test-data",
     )
-    params.add_param(
-        "report",
-        default="<stdout>",
-        desc="If provided, the report will be written to this file",
+    parser.add_argument(
+        "--report",
+        type="path",
+        default="/dev/stdout",
+        help="If provided, the report will be written to this file",
     )
-    params.add_param(
-        "title",
+    parser.add_argument(
+        "--title",
         default="Report",
-        desc="The title of the report",
+        help="The title of the report",
     )
-    params.add_param(
-        "comver",
-        default="1.3.0",
-        desc="The version of the toml-test to use in compliance tests",
+    parser.add_argument(
+        "--comver",
+        default="1.5.0",
+        help="The version of the toml-test to use in compliance tests",
     )
-    params.add_param(
-        "cpyver",
-        default="3.11.0",
-        desc="The version (tag) of cpython to grab the tomllib test data",
+    parser.add_argument(
+        "--cpyver",
+        default="3.12.4",
+        help="The version (tag) of cpython to grab the tomllib test data",
     )
-    params.add_param(
-        "nocache",
-        default=False,
-        desc="Do not use cached data, re-download them.",
+    parser.add_argument(
+        "--nocache",
+        action="store_true",
+        help="Do not use cached data, re-download them.",
     )
-    params.add_param(
-        "iter",
+    parser.add_argument(
+        "--iter",
+        type="int",
         default=5000,
-        desc="The number of iterations to run in speed tests",
+        help="The number of iterations to run in speed tests",
     )
-    return params
+    return parser
 
 
 def main():
     """Main entrance"""
-    args = init_params().parse()
+    args = init_params().parse_args()
     run_suite(
         BenchSuite,
         args=args,
