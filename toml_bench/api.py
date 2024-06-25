@@ -65,6 +65,9 @@ class APIBase(BenchAPI, ABC):
     def version(self) -> str:
         return im.version(self.package.__name__)
 
+    dumps_none = dumps
+    loads_none = loads
+
 
 class TOMLAPI(APIBase):
     _name = "toml"
@@ -109,6 +112,32 @@ class RTOMLAPI(APIBase):
     _name = "rtoml"
     package = rtoml
     repo = "https://github.com/samuelcolvin/rtoml"
+
+    def dumps_none(self, data: Any) -> str:
+        out = self.package.dumps(data)
+        version = tuple(map(int, self.version.split(".")))
+        if version < (0, 11, 0):
+            return out
+
+        return (
+            f"{out}\n---\nrtoml v0.11+ supports dumping None to a desired string:\n"
+            "`rtoml.dumps(data, none_value='@None')`:"
+            f"\n{self.package.dumps(data, none_value='@None')}"
+        )
+
+    def loads_none(self, data: str) -> Mapping[str, Any]:
+        out = self.package.loads(data)
+        version = tuple(map(int, self.version.split(".")))
+        if version < (0, 11, 0):
+            return out
+
+        return (
+            f"{out!r}\n---\nrtoml v0.11+ supports loading custom None values:"
+            "\n`rtoml.loads(data, none_value='None')`:"
+            f"\n{self.package.loads(data, none_value='None')}"
+            "\n`rtoml.loads(data, none_value='null')`:"
+            f"\n{self.package.loads(data, none_value='null')}"
+        )
 
 
 class QTOMLAPI(APIBase):

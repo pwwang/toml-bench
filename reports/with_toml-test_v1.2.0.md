@@ -25,9 +25,9 @@ Literally `<package>.dumps(None)`
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|'NoneType' object is not iterable|
 |<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|'NoneType' object has no attribute 'items'|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Expecting Mapping or TOML Container, <class 'NoneType'> given|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|"null"|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|"null"<br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />"@None"|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|'NoneType' object has no attribute 'items'|
-|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 
 ## Dumping key-`None` pair
 
@@ -41,9 +41,9 @@ Literally `<package>.dumps({"key": None})`
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>||
 |<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|Object of type <class 'NoneType'> is not TOML serializable|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Invalid type <class 'NoneType'>|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = "null"<br />|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = "null"<br /><br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />key = "@None"<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|TOML cannot encode None|
-|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 
 ## Dumping list with `None` value
 
@@ -57,9 +57,9 @@ Literally `<package>.dumps({"key": [1, 2, 3, None, 5]})`
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|key = [ 1, 2, 3, "None", 5,]<br />|
 |<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|Object of type <class 'NoneType'> is not TOML serializable|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Invalid type <class 'NoneType'>|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = [1, 2, 3, "null", 5]<br />|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = [1, 2, 3, "null", 5]<br /><br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />key = [1, 2, 3, "@None", 5]<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|bad type '<class 'NoneType'>' for dump_value|
-|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 
 ## Loading `None`-like values
 
@@ -71,9 +71,9 @@ Literally `<package>.loads('v1 = "null" v2 = "None"')`
 | |Loaded as|
 |-|-----------------------|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|{'v1': 'null', 'v2': 'None'}|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|{'v1': 'null', 'v2': 'None'}|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|module 'tomli_w' has no attribute 'loads'|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|{'v1': 'null', 'v2': 'None'}|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'v1': 'null', 'v2': 'None'}|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'v1': 'null', 'v2': 'None'}<br />---<br />rtoml v0.11+ supports loading custom None values:<br />`rtoml.loads(data, none_value='None')`:<br />{'v1': 'null', 'v2': None}<br />`rtoml.loads(data, none_value='null')`:<br />{'v1': None, 'v2': 'None'}|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|{'v1': 'null', 'v2': 'None'}|
 |<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|{'v1': 'null', 'v2': 'None'}|
 
@@ -312,11 +312,11 @@ provided by `rtoml`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.10s (5000 iterations)|0.74s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|40.82s (5000 iterations)|0.99s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.37s (5000 iterations)|0.09s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|5.01s (5000 iterations)|1.88s (5000 iterations)|
-|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|2.06s (5000 iterations)|Dumping not supported|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.09s (5000 iterations)|0.74s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|39.62s (5000 iterations)|0.99s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.38s (5000 iterations)|0.08s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|5.08s (5000 iterations)|1.91s (5000 iterations)|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|2.02s (5000 iterations)|Dumping not supported|
 
 ## Running speed with data provided by `tomli`
 
@@ -329,9 +329,9 @@ provided by `tomli`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.42s (5000 iterations)|0.46s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|25.31s (5000 iterations)|0.50s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.41s (5000 iterations)|0.46s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|24.56s (5000 iterations)|0.50s (5000 iterations)|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.32s (5000 iterations)|0.16s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|3.65s (5000 iterations)|1.28s (5000 iterations)|
-|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|1.54s (5000 iterations)|Dumping not supported|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|3.68s (5000 iterations)|1.26s (5000 iterations)|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|1.42s (5000 iterations)|Dumping not supported|
 
