@@ -12,6 +12,7 @@ import rtoml
 import toml
 import tomli
 import tomli_w
+import tomlclass
 import tomlkit
 
 try:
@@ -168,3 +169,30 @@ if tomllib:
 
         def dump(self, data: Mapping[str, Any], path: PathLike) -> None:
             raise NotImplementedError("Dumping not supported")
+
+
+class TOMLClassAPI(APIBase):
+    _name = "tomlclass"
+    package = tomlclass
+    repo = "https://github.com/tomlclass/tomlclass"
+
+    def dumps(self, data: Mapping[str, Any]) -> str:
+        # tomlclass.dumps() serializes a Document, not a plain dict.
+        # Plain dicts go through the documented path: parse an empty
+        # document, assign the keys, then render.
+        doc = self.package.parse("")
+        if isinstance(data, Mapping):
+            for key, value in data.items():
+                doc[key] = value
+        else:
+            # non-mapping input: assignment lets the engine raise its
+            # native TOMLTypeError (TOML has no null)
+            doc["value"] = data
+            return self.package.dumps(doc)
+        return self.package.dumps(doc)
+
+    dumps_none = dumps
+
+    def dump(self, data: Mapping[str, Any], path: PathLike) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(self.dumps(data))
