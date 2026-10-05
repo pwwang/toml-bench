@@ -30,6 +30,13 @@ class BenchCaseCompliance(BenchCase):
         self.total = 0
         self.datadir = None
 
+    def _open(self, tomlfile: Path):
+        # newline='' keeps \r intact, so CR-control invalid cases reach the
+        # parser untranslated instead of being normalized away by text mode
+        if self.api.OPEN_FLAG == "rb":
+            return tomlfile.open("rb")
+        return tomlfile.open("r", newline="", encoding="utf-8")
+
     def fileurl(self, filename: str) -> str:
         return (
             f"{TEST_FILE_PREFIX % {'ver': self.args.comver}}"
@@ -79,7 +86,7 @@ class BenchCaseComplianceValid(BenchCaseCompliance):
             else f"{tomlfile.parent.name}/{tomlfile.name}"
         )
         url = self.fileurl(filename)
-        with tomlfile.open(self.api.OPEN_FLAG) as f:
+        with self._open(tomlfile) as f:
             try:
                 data = self.api.load(f)
             except Exception as e:
@@ -121,7 +128,7 @@ class BenchCaseComplianceInvalid(BenchCaseCompliance):
             else f"{tomlfile.parent.name}/{tomlfile.name}"
         )
         url = self.fileurl(filename)
-        with tomlfile.open(self.api.OPEN_FLAG) as f:
+        with self._open(tomlfile) as f:
             try:
                 self.api.load(f)
             except Exception as e:
