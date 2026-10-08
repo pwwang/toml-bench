@@ -15,10 +15,11 @@ The verions of the packages tested in this report.
 | |Version|
 |-|-----------------------|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|0.10.2|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.4.1; **tomli_w**: 1.2.0|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.5.0; **tomli_w**: 1.2.0|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|0.15.1|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.13.0|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|0.3.1|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|(Python 3.13.14)|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|0.3.0|
 
 ### Dumping `None` value
@@ -35,6 +36,7 @@ Literally `<package>.dumps(None)`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Expecting Mapping or TOML Table or Container, <class 'NoneType'> given|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|"null"<br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />"@None"|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|'NoneType' object has no attribute 'items'|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|None cannot be represented in TOML|
 
 ### Dumping key-`None` pair
@@ -51,6 +53,7 @@ Literally `<package>.dumps({"key": None})`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Unable to convert an object of <class 'NoneType'> to a TOML item|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = "null"<br /><br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />key = "@None"<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|TOML cannot encode None|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|None cannot be represented in TOML|
 
 ### Dumping list with `None` value
@@ -67,6 +70,7 @@ Literally `<package>.dumps({"key": [1, 2, 3, None, 5]})`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Unable to convert an object of <class 'NoneType'> to a TOML item|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|key = [1, 2, 3, "null", 5]<br /><br />---<br />rtoml v0.11+ supports dumping None to a desired string:<br />`rtoml.dumps(data, none_value='@None')`:<br />key = [1, 2, 3, "@None", 5]<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|bad type '<class 'NoneType'>' for dump_value|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|module 'tomllib' has no attribute 'dumps'|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|None cannot be represented in TOML|
 
 ### Loading `None`-like values
@@ -83,6 +87,7 @@ Literally `<package>.loads('v1 = "null" v2 = "None"')`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|{'v1': 'null', 'v2': 'None'}|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'v1': 'null', 'v2': 'None'}<br />---<br />rtoml v0.11+ supports loading custom None values:<br />`rtoml.loads(data, none_value='None')`:<br />{'v1': 'null', 'v2': None}<br />`rtoml.loads(data, none_value='null')`:<br />{'v1': None, 'v2': 'None'}|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|{'v1': 'null', 'v2': 'None'}|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|{'v1': 'null', 'v2': 'None'}|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|{'v1': 'null', 'v2': 'None'}|
 
 ### Dumping a heterogenous array
@@ -99,6 +104,7 @@ Literally `<package>.dumps({"v": [1, 1.2, True, "string"]})`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;"string"\]<br />|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;"string"\]<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;'string'\]<br />|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|v&nbsp;=&nbsp;\[1,&nbsp;1.2,&nbsp;true,&nbsp;"string"\]<br />|
 
 ### Loading a heterogenous array
@@ -115,6 +121,7 @@ Literally `<package>.loads('v = [1, 1.2, True, "string"]')`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|`{'v': [1, 1.2, True, 'string']}`|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|`{'v': [1, 1.2, True, 'string']}`|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|`{'v': [1, 1.2, True, 'string']}`|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|`{'v': [1, 1.2, True, 'string']}`|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|`{'v': [1, 1.2, True, 'string']}`|
 
 ### Dumping a nested array
@@ -131,6 +138,7 @@ Literally `<package>.dumps({"v": [[1], [1, 2]]})`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|v&nbsp;=&nbsp;\[\[1\],&nbsp;\[1,&nbsp;2\]\]<br />|
 
 ### Loading a nested array
@@ -147,6 +155,7 @@ Literally `<package>.loads('v = [[1], [1, 2]]')`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|`{'v': [[1], [1, 2]]}`|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|`{'v': [[1], [1, 2]]}`|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|`{'v': [[1], [1, 2]]}`|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|`{'v': [[1], [1, 2]]}`|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|`{'v': [[1], [1, 2]]}`|
 
 ### Dumping keeps order of keys?
@@ -165,6 +174,7 @@ like `c = 1\na = 2\nb = 3\n`.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Kept|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Kept|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Kept|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|Kept|
 
 ### Loading keeps order of keys?
@@ -183,6 +193,7 @@ a dictionary with keys in the order of `['c', 'a', 'b']`.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Kept|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Kept|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Kept|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Kept|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|Kept|
 
 ### Dumping unicode
@@ -199,6 +210,7 @@ Literally, `<package>.dumps({"你好": "世界"})`
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|"你好" = "世界"<br />|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|"你好" = "世界"<br />|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|'你好' = '世界'<br />|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|Dumping not supported|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|"你好" = "世界"<br />|
 
 ### Loaded unicode
@@ -221,10 +233,11 @@ with open(self.datafile, "r", encoding="utf-8") as f:
 | |Loaded as|
 |-|-----------------------|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|{'你好': '世界'}|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')`<br />When loaded with `rb`:<br />{'你好': '世界'}|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|bytes object expected; got str<br />When loaded with `rb`:<br />{'你好': '世界'}|
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|{'你好': '世界'}|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|{'你好': '世界'}|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|{'你好': '世界'}|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|File must be opened in binary mode, e.g. use `open('foo.toml', 'rb')`<br />When loaded with `rb`:<br />{'你好': '世界'}|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|{'你好': '世界'}|
 
 ### Compliance with valid tests in toml-test
@@ -245,6 +258,7 @@ loading the toml file yields the same result as the JSON counterpart.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|[key/unicode.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/key/unicode.toml) Empty key at line 3 col 0<br />*186/187 (99.47%) passed*|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|[datetime/no-seconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/no-seconds.toml) expected a colon, found a newline at line 2 column 26<br />[inline-table/newline.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/inline-table/newline.toml) expected a table key, found a newline at line 3 column 21<br />[key/unicode.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/key/unicode.toml) unexpected character found: `\u{20ac}` at line 3 column 1<br />[spec/table-9.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/spec/table-9.toml) duplicate key: `apple` for key `fruit` at line 8 column 1<br />[string/escape-esc.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/escape-esc.toml) invalid escape character in string: `e` at line 1 column 9<br />[string/hex-escape.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/hex-escape.toml) invalid escape character in string: `x` at line 3 column 21<br />[table/array-within-dotted.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/table/array-within-dotted.toml) duplicate key: `apple` for key `fruit` at line 4 column 1<br />*180/187 (96.26%) passed*|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|[comment/after-literal-no-ws.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/comment/after-literal-no-ws.toml) can't parse type (line 1, column 4)<br />[comment/tricky.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/comment/tricky.toml) can't parse type (line 11, column 7)<br />[datetime/datetime.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/datetime.toml) Didn't find expected newline (line 4, column 18)<br />[datetime/milliseconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/milliseconds.toml) Didn't find expected newline (line 2, column 27)<br />[datetime/no-seconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/no-seconds.toml) can't parse type (line 2, column 20)<br />[inline-table/newline.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/inline-table/newline.toml) ' ' cannot begin key (line 3, column 20)<br />[key/unicode.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/key/unicode.toml) '€' cannot begin key (line 3, column 0)<br />[spec/string-4.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/spec/string-4.toml) Didn't find expected newline (line 7, column 62)<br />[spec/string-7.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/spec/string-7.toml) Didn't find expected newline (line 7, column 50)<br />[string/escape-esc.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/escape-esc.toml) \e not a valid escape (line 1, column 33)<br />[string/hex-escape.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/hex-escape.toml) \x not a valid escape (line 3, column 43)<br />[string/multiline-quotes.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/multiline-quotes.toml) Didn't find expected newline (line 4, column 26)<br />[string/raw-multiline.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/raw-multiline.toml) Didn't find expected newline (line 22, column 3)<br />*174/187 (93.05%) passed*|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|[datetime/no-seconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/no-seconds.toml) Expected newline or end of document after a statement (at line 2, column 23)<br />[inline-table/newline.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/inline-table/newline.toml) Invalid initial character for a key part (at line 3, column 21)<br />[key/unicode.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/key/unicode.toml) Invalid statement (at line 3, column 1)<br />[string/escape-esc.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/escape-esc.toml) Unescaped '\' in a string (at line 1, column 10)<br />[string/hex-escape.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/hex-escape.toml) Unescaped '\' in a string (at line 3, column 22)<br />*182/187 (97.33%) passed*|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|[datetime/no-seconds.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/datetime/no-seconds.toml) expected end of line after key/value pair (line 2, column 23):     without-seconds-1 = 13:37<br />[inline-table/newline.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/inline-table/newline.toml) invalid key character '\n' (line 3, column 21):     trailing-comma-1 = {<br />[key/unicode.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/key/unicode.toml) invalid key character '€' (line 3, column 1):     € = 'Euro'<br />[string/escape-esc.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/escape-esc.toml) invalid escape \e (line 1, column 9):     esc = "\e There is no escape! \e"<br />[string/hex-escape.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//valid/string/hex-escape.toml) invalid escape \x (line 3, column 21):     whitespace      = "\x20 \x09 \x1b \x0d\x0a"<br />*182/187 (97.33%) passed*|
 
 ### Compliance with invalid tests in toml-test
@@ -266,6 +280,7 @@ parsing error.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/multi-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/multi-cr.toml) incorrectly parsed.<br />Not OK: [control/rawmulti-cd.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/rawmulti-cd.toml) incorrectly parsed.<br />Not OK: [datetime/no-secs.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/datetime/no-secs.toml) incorrectly parsed.<br />Not OK: [inline-table/linebreak-1.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/inline-table/linebreak-1.toml) incorrectly parsed.<br />Not OK: [inline-table/linebreak-2.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/inline-table/linebreak-2.toml) incorrectly parsed.<br />Not OK: [inline-table/linebreak-3.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/inline-table/linebreak-3.toml) incorrectly parsed.<br />Not OK: [inline-table/linebreak-4.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/inline-table/linebreak-4.toml) incorrectly parsed.<br />Not OK: [inline-table/trailing-comma.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/inline-table/trailing-comma.toml) incorrectly parsed.<br />Not OK: *3 more items incorrectly parsed.*<br />*358/371 (96.50%) passed*|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-del.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-del.toml) incorrectly parsed.<br />Not OK: [control/multi-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/multi-cr.toml) incorrectly parsed.<br />Not OK: [control/rawmulti-cd.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/rawmulti-cd.toml) incorrectly parsed.<br />Not OK: [datetime/offset-overflow-hour.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/datetime/offset-overflow-hour.toml) incorrectly parsed.<br />Not OK: [datetime/offset-overflow-minute.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/datetime/offset-overflow-minute.toml) incorrectly parsed.<br />Not OK: [integer/positive-bin.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/integer/positive-bin.toml) incorrectly parsed.<br />Not OK: [integer/positive-hex.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/integer/positive-hex.toml) incorrectly parsed.<br />Not OK: [integer/positive-oct.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/integer/positive-oct.toml) incorrectly parsed.<br />*361/371 (97.30%) passed*|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-del.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-del.toml) incorrectly parsed.<br />Not OK: [control/comment-ff.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-ff.toml) incorrectly parsed.<br />Not OK: [control/comment-lf.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-lf.toml) incorrectly parsed.<br />Not OK: [control/comment-null.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-null.toml) incorrectly parsed.<br />Not OK: [control/comment-us.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-us.toml) incorrectly parsed.<br />Not OK: [control/multi-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/multi-cr.toml) incorrectly parsed.<br />Not OK: [control/rawmulti-cd.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/rawmulti-cd.toml) incorrectly parsed.<br />Not OK: [datetime/offset-overflow-minute.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/datetime/offset-overflow-minute.toml) incorrectly parsed.<br />Not OK: *14 more items incorrectly parsed.*<br />*347/371 (93.53%) passed*|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|OK: [table/with-pound.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/table/with-pound.toml) Expected ']' at the end of a table declaration (at line 1, column 5)<br /> *371/371 (100%) passed*|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|Not OK: [control/bare-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/bare-cr.toml) incorrectly parsed.<br />Not OK: [control/comment-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/comment-cr.toml) incorrectly parsed.<br />Not OK: [control/multi-cr.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/multi-cr.toml) incorrectly parsed.<br />Not OK: [control/rawmulti-cd.toml](https://github.com/BurntSushi/toml-test/blob/v1.5.0/tests//invalid/control/rawmulti-cd.toml) incorrectly parsed.<br />*367/371 (98.92%) passed*|
 
 ### Compliance with valid tests in python tomllib test data
@@ -286,6 +301,7 @@ loading the toml file yields the same result as the JSON counterpart.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|OK, *12/12 (100%) passed*|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|OK, *12/12 (100%) passed*|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|[apostrophes-in-literal-string.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//valid/apostrophes-in-literal-string.toml) Didn't find expected newline (line 3, column 3)<br />[five-quotes.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//valid/five-quotes.toml) Didn't find expected newline (line 3, column 3)<br />[dates-and-times/datetimes.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//valid/dates-and-times/datetimes.toml) Didn't find expected newline (line 1, column 19)<br />*9/12 (75.00%) passed*|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|OK, *12/12 (100%) passed*|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|OK, *12/12 (100%) passed*|
 
 ### Compliance with invalid tests in python tomllib test data
@@ -307,6 +323,7 @@ parsing error.
 |<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />*49/50 (98.00%) passed*|
 |<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />*49/50 (98.00%) passed*|
 |<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|Not OK: [invalid-comment-char.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/invalid-comment-char.toml) incorrectly parsed.<br />Not OK: [non-scalar-escaped.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/non-scalar-escaped.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table-with-subtable.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table-with-subtable.toml) incorrectly parsed.<br />Not OK: [dotted-keys/extend-defined-table.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/dotted-keys/extend-defined-table.toml) incorrectly parsed.<br />Not OK: [inline-table/override-val-with-table.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/inline-table/override-val-with-table.toml) incorrectly parsed.<br />Not OK: [inline-table/overwrite-value-in-inner-table.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/inline-table/overwrite-value-in-inner-table.toml) incorrectly parsed.<br />Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />Not OK: [table/redefine-1.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/table/redefine-1.toml) incorrectly parsed.<br />Not OK: [table/redefine-2.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/table/redefine-2.toml) incorrectly parsed.<br />*41/50 (82.00%) passed*|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|OK: [table/redefine-2.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/table/redefine-2.toml) Cannot declare ('t1', 't2', 't3') twice (at line 3, column 10)<br /> *50/50 (100%) passed*|
 |<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|Not OK: [multiline-basic-str/carriage-return.toml](https://github.com/python/cpython/tree/v3.12.4/Lib/test/test_tomllib/data//invalid/multiline-basic-str/carriage-return.toml) incorrectly parsed.<br />*49/50 (98.00%) passed*|
 
 ### Running speed with data provided by `rtoml`
@@ -320,11 +337,12 @@ provided by `rtoml`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|3.24s (5000 iterations)|1.32s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|44.83s (5000 iterations)|1.84s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.70s (5000 iterations)|0.14s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|9.07s (5000 iterations)|2.61s (5000 iterations)|
-|<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|4.51s (5000 iterations)|4.74s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|1.03s (5000 iterations)|1.06s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|35.32s (5000 iterations)|1.43s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.59s (5000 iterations)|0.15s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|6.52s (5000 iterations)|2.70s (5000 iterations)|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|2.72s (5000 iterations)|Dumping not supported|
+|<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|3.45s (5000 iterations)|3.79s (5000 iterations)|
 
 ### Running speed with data provided by `tomli`
 
@@ -337,11 +355,12 @@ provided by `tomli`
 | |Loading speed|Dumping speed|
 |-|-|-|
 |<a target="_blank" href="https://github.com/uiri/toml">toml</a>|Excluded (heterogeneous arrays not supported)|Excluded (heterogeneous arrays not supported)|
-|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|2.26s (5000 iterations)|0.85s (5000 iterations)|
-|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|19.72s (5000 iterations)|0.87s (5000 iterations)|
-|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.50s (5000 iterations)|0.26s (5000 iterations)|
-|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|6.51s (5000 iterations)|1.89s (5000 iterations)|
-|<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|3.12s (5000 iterations)|2.99s (5000 iterations)|
+|<a target="_blank" href="https://github.com/hukkin/tomli">tomli/tomli_w</a>|0.72s (5000 iterations)|0.67s (5000 iterations)|
+|<a target="_blank" href="https://github.com/sdispater/tomlkit">tomlkit</a>|15.04s (5000 iterations)|0.71s (5000 iterations)|
+|<a target="_blank" href="https://github.com/samuelcolvin/rtoml">rtoml</a>|0.46s (5000 iterations)|0.23s (5000 iterations)|
+|<a target="_blank" href="https://github.com/alethiophile/qtoml">qtoml</a>|4.63s (5000 iterations)|1.79s (5000 iterations)|
+|<a target="_blank" href="https://docs.python.org/3/library/tomllib.html">tomllib</a>|1.86s (5000 iterations)|Dumping not supported|
+|<a target="_blank" href="https://github.com/tomlclass/tomlclass">tomlclass</a>|2.46s (5000 iterations)|2.46s (5000 iterations)|
 
 
 
