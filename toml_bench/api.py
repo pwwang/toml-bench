@@ -176,6 +176,15 @@ class TOMLClassAPI(APIBase):
     package = tomlclass
     repo = "https://github.com/tomlclass/tomlclass"
 
+    # tomlclass defaults to TOML 1.1 acceptance; the toml-test manifests this
+    # benchmark runs predate 1.1, and every other library here parses 1.0-
+    # strict — run tomlclass in its strict 1.0 mode so the numbers compare
+    def loads(self, data: str) -> Mapping[str, Any]:
+        return self.package.loads(data, toml_version="1.0")
+
+    def load(self, path: PathLike) -> Mapping[str, Any]:
+        return self.package.load(path, toml_version="1.0")
+
     def dumps(self, data: Mapping[str, Any]) -> str:
         # tomlclass.dumps() serializes a Document, not a plain dict.
         # Plain dicts go through the documented path: parse an empty
